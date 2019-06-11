@@ -1,8 +1,8 @@
 {
   "name": "react-table.js",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A react table library with custom features",
-  "main": "./dist/lib/index.js",
+  "main": "./build/lib/index.js",
   "author": "riteshf",
   "license": "MIT",
   "repository": "riteshf/react-table.js",
