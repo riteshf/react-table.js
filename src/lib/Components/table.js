@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Pagination from "react-js-pagination";
-import { getDataWithinIndexRange } from "./Utils/rows";
-import { getRows } from "./Components/rows";
-import { getHeaders } from "./Components/header";
+import "bootstrap/dist/css/bootstrap.css";
+import { getDataWithinIndexRange } from "../Utils/rows";
+import { getRows } from "./rows";
+import { getHeaders } from "./header";
 
 const Table = props => {
   const [activePage, setActivePage] = useState(0);

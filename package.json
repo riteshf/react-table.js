@@ -7,13 +7,13 @@
   "license": "MIT",
   "repository": "riteshf/react-table.js",
   "scripts": {
-    "start": "./node_modules/.bin/parcel src/docs/index.html",
+    "start": "parcel src/docs/index.html",
     "build": "webpack --config webpack.config.js --profile --progress",
     "build:docs": "./node_modules/.bin/parcel build src/docs/index.js -d dist/docs/"
   },
   "peerDependencies": {
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",

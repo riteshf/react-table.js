@@ -1,5 +1,6 @@
 const sortData = (data, fieldName, order) => {
     if (!fieldName) return data;
+    else return data;
 
 }
 
