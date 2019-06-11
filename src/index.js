@@ -1,22 +1,50 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { useState } from "react";
+import Pagination from "react-js-pagination";
+import { getDataWithinIndexRange } from "./Utils/rows";
+import { getRows } from "./Components/rows";
+import { getHeaders } from "./Components/header";
 
-import styles from './styles.css'
+const Table = props => {
+  const [activePage, setActivePage] = useState(0);
+  const itemsPerPage = props.options.itemsPerPage || 10;
+  const originalRows = getRows(props.colDef, props.rowData, props.options);
+  const [rows, setRows] = useState(
+    getDataWithinIndexRange(0, itemsPerPage, originalRows)
+  );
 
-export default class ExampleComponent extends Component {
-  static propTypes = {
-    text: PropTypes.string
-  }
+  const changePageWithData = (pageId = 1) => {
+    const newRows = getDataWithinIndexRange(
+      (pageId - 1) * itemsPerPage,
+      pageId * itemsPerPage,
+      originalRows
+    );
+    setRows(newRows);
+    setActivePage(newRows.length > itemsPerPage ? pageId - 1 : 0);
+  };
 
-  render() {
-    const {
-      text
-    } = this.props
-
-    return (
-      <div className={styles.test}>
-        Example Component: {text}
+  return (
+    <section className="panel panel-info">
+      <div className="panel-heading">{props.header}</div>
+      <div className="panel-body table-responsive">
+        <table className="table table-bordered" id={props.header}>
+          <thead>
+            <tr>{getHeaders(props.colDef, props.options)}</tr>
+          </thead>
+          <tbody>{rows}</tbody>
+        </table>
+        {originalRows.length > itemsPerPage ? (
+          <Pagination
+            activePage={activePage}
+            itemsCountPerPage={itemsPerPage}
+            totalItemsCount={originalRows.length}
+            onChange={changePageWithData}
+            itemClass="page-item"
+            linkClass="page-link"
+          />
+        ) : null}
       </div>
-    )
-  }
-}
+    </section>
+  );
+};
+
+export default Table;
