@@ -42,7 +42,7 @@ const tableOptions = {
 };
 
 const App = () => (
-  <div>
+  <div className="container">
     <Table {...tableOptions} />
   </div>
 );

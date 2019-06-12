@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Pagination from "react-js-pagination";
 import "bootstrap/dist/css/bootstrap.css";
+import './table.css';
 import { getDataWithinIndexRange } from "../Utils/rows";
 import { getRows } from "./rows";
 import { getHeaders } from "./header";
@@ -24,10 +25,10 @@ const Table = props => {
   };
 
   return (
-    <section className="panel panel-info">
-      <div className="panel-heading">{props.header}</div>
+    <section className="panel panel-default">
+      {props.header ? <header className="panel-heading">{props.header}</header> : null}
       <div className="panel-body table-responsive">
-        <table className="table table-bordered" id={props.header}>
+        <table className="table table-hover" id={props.header}>
           <thead>
             <tr>{getHeaders(props.colDef, props.options)}</tr>
           </thead>
@@ -48,4 +49,4 @@ const Table = props => {
   );
 };
 
-export default Table;
+export { Table };
