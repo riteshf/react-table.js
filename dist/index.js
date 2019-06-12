@@ -760,7 +760,7 @@ var getRows = function getRows(colDef, rowData, options) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
         key: key,
         style: header.style || {}
-      }, header.Cell ? header.Cell(row) : row[header.fieldName]);
+      }, header.Cell ? header.Cell(row, key) : row[header.fieldName]);
     }));
   });
 };
@@ -862,11 +862,12 @@ var Table = function Table(props) {
     setActivePage(newRows.length > itemsPerPage ? pageId - 1 : 0);
   };
 
+  var headerStyle = props.header && props.header.style ? props.header.style : {};
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
     className: "panel panel-default"
   }, props.header && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
     className: "panel-heading",
-    style: props.header.style || {}
+    style: headerStyle
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     onClick: function onClick() {
       return shouldShowTable(!showTable);

@@ -5,10 +5,6 @@ import { Table } from '../lib';
 const tableOptions = {
   header: {
     name: "Sample Table",
-    style: {
-      color: 'red'
-    }
-    
   },
   colDef: [
     {

@@ -25,13 +25,18 @@ const Table = props => {
     setActivePage(newRows.length > itemsPerPage ? pageId - 1 : 0);
   };
 
+  const headerStyle = props.header && props.header.style ? props.header.style : {};
   return (
     <section className="panel panel-default">
-      {props.header && <header className="panel-heading" style={props.header.style || {}}>
-        <div onClick={() => shouldShowTable(!showTable)}>
-          {props.header.name}
-        </div>
-      </header>}
+      {
+        props.header && (
+          <header className="panel-heading" style={headerStyle}>
+            <div onClick={() => shouldShowTable(!showTable)}>
+              {props.header.name}
+            </div>
+          </header>
+        )
+      }
       {showTable && (<div className="panel-body table-responsive">
         <table className="table table-hover" id={props.header}>
           <thead>

@@ -7,7 +7,7 @@ const getRows = (colDef, rowData, options) => {
         <tr key={key}>
             {colDef.map((header, key) => (
                 <td key={key} style={header.style || {}}>
-                    {header.Cell ? header.Cell(row) : row[header.fieldName]}
+                    {header.Cell ? header.Cell(row, key) : row[header.fieldName]}
                 </td>
             ))}
         </tr>
