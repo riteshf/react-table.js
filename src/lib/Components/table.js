@@ -27,11 +27,11 @@ const Table = props => {
 
   return (
     <section className="panel panel-default">
-      <header className="panel-heading" style={props.header.style || {}}>
+      {props.header && <header className="panel-heading" style={props.header.style || {}}>
         <div onClick={() => shouldShowTable(!showTable)}>
           {props.header.name}
         </div>
-      </header>
+      </header>}
       {showTable && (<div className="panel-body table-responsive">
         <table className="table table-hover" id={props.header}>
           <thead>

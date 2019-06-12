@@ -864,7 +864,7 @@ var Table = function Table(props) {
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
     className: "panel panel-default"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
+  }, props.header && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
     className: "panel-heading",
     style: props.header.style || {}
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
