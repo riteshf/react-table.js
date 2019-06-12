@@ -3,7 +3,13 @@ import ReactDOM from 'react-dom';
 import { Table } from '../lib';
 
 const tableOptions = {
-  header: "Sample Table",
+  header: {
+    name: "Sample Table",
+    style: {
+      color: 'rgb'
+    }
+    
+  },
   colDef: [
     {
       name: "a",
@@ -38,6 +44,7 @@ const tableOptions = {
     sortBy: "b",
     sortingOrder: "ASC",
     itemsPerPage: 10,
+    defaultShowTable: true,
   },
 };
 

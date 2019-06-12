@@ -8,6 +8,7 @@ import { getHeaders } from "./header";
 
 const Table = props => {
   const [activePage, setActivePage] = useState(0);
+  const [showTable, shouldShowTable] = useState(props.options.defaultShowTable || true);
   const itemsPerPage = props.options.itemsPerPage || 10;
   const originalRows = getRows(props.colDef, props.rowData, props.options);
   const [rows, setRows] = useState(
@@ -26,15 +27,19 @@ const Table = props => {
 
   return (
     <section className="panel panel-default">
-      {props.header ? <header className="panel-heading">{props.header}</header> : null}
-      <div className="panel-body table-responsive">
+      <header className="panel-heading" style={props.header.style || {}}>
+        <div onClick={() => shouldShowTable(!showTable)}>
+          {props.header.name}
+        </div>
+      </header>
+      {showTable && (<div className="panel-body table-responsive">
         <table className="table table-hover" id={props.header}>
           <thead>
             <tr>{getHeaders(props.colDef, props.options)}</tr>
           </thead>
           <tbody>{rows}</tbody>
         </table>
-        {originalRows.length > itemsPerPage ? (
+        {originalRows.length <= itemsPerPage || (
           <Pagination
             activePage={activePage}
             itemsCountPerPage={itemsPerPage}
@@ -43,8 +48,8 @@ const Table = props => {
             itemClass="page-item"
             linkClass="page-link"
           />
-        ) : null}
-      </div>
+        )}
+      </div>)}
     </section>
   );
 };

@@ -842,13 +842,18 @@ var Table = function Table(props) {
       activePage = _useState2[0],
       setActivePage = _useState2[1];
 
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.options.defaultShowTable || true),
+      _useState4 = _slicedToArray(_useState3, 2),
+      showTable = _useState4[0],
+      shouldShowTable = _useState4[1];
+
   var itemsPerPage = props.options.itemsPerPage || 10;
   var originalRows = Object(_rows__WEBPACK_IMPORTED_MODULE_5__["getRows"])(props.colDef, props.rowData, props.options);
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(Object(_Utils_rows__WEBPACK_IMPORTED_MODULE_4__["getDataWithinIndexRange"])(0, itemsPerPage, originalRows)),
-      _useState4 = _slicedToArray(_useState3, 2),
-      rows = _useState4[0],
-      setRows = _useState4[1];
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(Object(_Utils_rows__WEBPACK_IMPORTED_MODULE_4__["getDataWithinIndexRange"])(0, itemsPerPage, originalRows)),
+      _useState6 = _slicedToArray(_useState5, 2),
+      rows = _useState6[0],
+      setRows = _useState6[1];
 
   var changePageWithData = function changePageWithData() {
     var pageId = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
@@ -859,21 +864,26 @@ var Table = function Table(props) {
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
     className: "panel panel-default"
-  }, props.header ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
-    className: "panel-heading"
-  }, props.header) : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
+    className: "panel-heading",
+    style: props.header.style || {}
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    onClick: function onClick() {
+      return shouldShowTable(!showTable);
+    }
+  }, props.header.name)), showTable && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "panel-body table-responsive"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
     className: "table table-hover",
     id: props.header
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, Object(_header__WEBPACK_IMPORTED_MODULE_6__["getHeaders"])(props.colDef, props.options))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, rows)), originalRows.length > itemsPerPage ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_js_pagination__WEBPACK_IMPORTED_MODULE_1___default.a, {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, Object(_header__WEBPACK_IMPORTED_MODULE_6__["getHeaders"])(props.colDef, props.options))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, rows)), originalRows.length <= itemsPerPage || react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_js_pagination__WEBPACK_IMPORTED_MODULE_1___default.a, {
     activePage: activePage,
     itemsCountPerPage: itemsPerPage,
     totalItemsCount: originalRows.length,
     onChange: changePageWithData,
     itemClass: "page-item",
     linkClass: "page-link"
-  }) : null));
+  })));
 };
 
 
