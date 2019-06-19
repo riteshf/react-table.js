@@ -701,6 +701,40 @@ module.exports = function (css) {
 
 /***/ }),
 
+/***/ "./src/lib/Components/Header.js":
+/*!**************************************!*\
+  !*** ./src/lib/Components/Header.js ***!
+  \**************************************/
+/*! exports provided: getHeaders */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getHeaders", function() { return getHeaders; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var getSortableView = function getSortableView() {};
+
+var applyOtherHeaderOptions = function applyOtherHeaderOptions(options, shouldSortBy, sortingOrder) {
+  var sortable = options.sortable;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, sortable ? getSortableView(shouldSortBy, sortingOrder) : null);
+};
+
+var getHeaders = function getHeaders(colDef, options) {
+  return colDef.map(function (header, key) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+      key: key,
+      style: header.style || {}
+    }, header.name);
+  });
+};
+
+
+
+/***/ }),
+
 /***/ "./src/lib/Components/Rows.js":
 /*!************************************!*\
   !*** ./src/lib/Components/Rows.js ***!
@@ -738,34 +772,102 @@ var Rows = function Rows(_ref) {
 
 /***/ }),
 
-/***/ "./src/lib/Components/header.js":
-/*!**************************************!*\
-  !*** ./src/lib/Components/header.js ***!
-  \**************************************/
-/*! exports provided: getHeaders */
+/***/ "./src/lib/Components/Table.js":
+/*!*************************************!*\
+  !*** ./src/lib/Components/Table.js ***!
+  \*************************************/
+/*! exports provided: Table */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getHeaders", function() { return getHeaders; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Table", function() { return Table; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_js_pagination__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-js-pagination */ "react-js-pagination");
+/* harmony import */ var react_js_pagination__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_js_pagination__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.css */ "bootstrap/dist/css/bootstrap.css");
+/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _table_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./table.css */ "./src/lib/Components/table.css");
+/* harmony import */ var _table_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_table_css__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _Utils_rows__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Utils/rows */ "./src/lib/Utils/rows.js");
+/* harmony import */ var _Rows__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Rows */ "./src/lib/Components/Rows.js");
+/* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Header */ "./src/lib/Components/Header.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
-var getSortableView = function getSortableView() {};
 
-var applyOtherHeaderOptions = function applyOtherHeaderOptions(options, shouldSortBy, sortingOrder) {
-  var sortable = options.sortable;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, sortable ? getSortableView(shouldSortBy, sortingOrder) : null);
-};
 
-var getHeaders = function getHeaders(colDef, options) {
-  return colDef.map(function (header, key) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
-      key: key,
-      style: header.style || {}
-    }, header.name);
-  });
+
+
+
+
+
+var Table = function Table(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0),
+      _useState2 = _slicedToArray(_useState, 2),
+      activePage = _useState2[0],
+      setActivePage = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      showPagination = _useState4[0],
+      setShowPagination = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.options.defaultShowTable || true),
+      _useState6 = _slicedToArray(_useState5, 2),
+      showTable = _useState6[0],
+      shouldShowTable = _useState6[1];
+
+  var itemsPerPage = props.options.itemsPerPage || 10;
+
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState8 = _slicedToArray(_useState7, 2),
+      rows = _useState8[0],
+      setRows = _useState8[1];
+
+  var changePageWithData = function changePageWithData(pageId) {
+    var newRows = Object(_Utils_rows__WEBPACK_IMPORTED_MODULE_4__["getDataWithinIndexRange"])((pageId - 1) * itemsPerPage, pageId * itemsPerPage, props.rowData);
+    setRows(newRows);
+    setActivePage(pageId);
+  };
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    changePageWithData(1);
+    setShowPagination(props.rowData && props.rowData.length >= itemsPerPage);
+  }, [props.rowData]);
+  var headerStyle = props.header && props.header.style ? props.header.style : {};
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+    className: "panel panel-default"
+  }, props.header && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
+    className: "panel-heading",
+    style: headerStyle
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    onClick: function onClick() {
+      return shouldShowTable(!showTable);
+    }
+  }, props.header.name)), showTable && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "panel-body table-responsive"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
+    className: "table table-hover"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, Object(_Header__WEBPACK_IMPORTED_MODULE_6__["getHeaders"])(props.colDef, props.options))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Rows__WEBPACK_IMPORTED_MODULE_5__["Rows"], {
+    colDef: props.colDef,
+    rowData: rows,
+    options: props.options
+  }))), showPagination && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_js_pagination__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    activePage: activePage,
+    itemsCountPerPage: itemsPerPage,
+    totalItemsCount: props.rowData ? props.rowData.length : 0,
+    onChange: changePageWithData,
+    itemClass: "page-item",
+    linkClass: "page-link"
+  })));
 };
 
 
@@ -799,103 +901,6 @@ var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addS
 if(content.locals) module.exports = content.locals;
 
 if(false) {}
-
-/***/ }),
-
-/***/ "./src/lib/Components/table.js":
-/*!*************************************!*\
-  !*** ./src/lib/Components/table.js ***!
-  \*************************************/
-/*! exports provided: Table */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Table", function() { return Table; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_js_pagination__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-js-pagination */ "react-js-pagination");
-/* harmony import */ var react_js_pagination__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_js_pagination__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.css */ "bootstrap/dist/css/bootstrap.css");
-/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _table_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./table.css */ "./src/lib/Components/table.css");
-/* harmony import */ var _table_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_table_css__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _Utils_rows__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Utils/rows */ "./src/lib/Utils/rows.js");
-/* harmony import */ var _Rows__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Rows */ "./src/lib/Components/Rows.js");
-/* harmony import */ var _header__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./header */ "./src/lib/Components/header.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-
-
-
-
-
-var Table = function Table(props) {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0),
-      _useState2 = _slicedToArray(_useState, 2),
-      activePage = _useState2[0],
-      setActivePage = _useState2[1];
-
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.options.defaultShowTable || true),
-      _useState4 = _slicedToArray(_useState3, 2),
-      showTable = _useState4[0],
-      shouldShowTable = _useState4[1];
-
-  var itemsPerPage = props.options.itemsPerPage || 10;
-
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
-      _useState6 = _slicedToArray(_useState5, 2),
-      rows = _useState6[0],
-      setRows = _useState6[1];
-
-  var changePageWithData = function changePageWithData(pageId) {
-    var newRows = Object(_Utils_rows__WEBPACK_IMPORTED_MODULE_4__["getDataWithinIndexRange"])((pageId - 1) * itemsPerPage, pageId * itemsPerPage, props.rowData);
-    setRows(newRows);
-    setActivePage(pageId);
-  };
-
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    changePageWithData(1);
-  }, [props.rowData]);
-  var headerStyle = props.header && props.header.style ? props.header.style : {};
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
-    className: "panel panel-default"
-  }, props.header && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
-    className: "panel-heading",
-    style: headerStyle
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    onClick: function onClick() {
-      return shouldShowTable(!showTable);
-    }
-  }, props.header.name)), showTable && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "panel-body table-responsive"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
-    className: "table table-hover",
-    id: props.header
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, Object(_header__WEBPACK_IMPORTED_MODULE_6__["getHeaders"])(props.colDef, props.options))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Rows__WEBPACK_IMPORTED_MODULE_5__["Rows"], {
-    colDef: props.colDef,
-    rowData: rows,
-    options: props.options
-  }))), props.rowData && props.rowData.length <= itemsPerPage ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_js_pagination__WEBPACK_IMPORTED_MODULE_1___default.a, {
-    activePage: activePage,
-    itemsCountPerPage: itemsPerPage,
-    totalItemsCount: props.rowData ? props.rowData.length : 0,
-    onChange: changePageWithData,
-    itemClass: "page-item",
-    linkClass: "page-link"
-  }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null)));
-};
-
-
 
 /***/ }),
 
@@ -940,8 +945,8 @@ var getDataWithinIndexRange = function getDataWithinIndexRange(from, to, data) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Components_table__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Components/table */ "./src/lib/Components/table.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Table", function() { return _Components_table__WEBPACK_IMPORTED_MODULE_0__["Table"]; });
+/* harmony import */ var _Components_Table__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Components/Table */ "./src/lib/Components/Table.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Table", function() { return _Components_Table__WEBPACK_IMPORTED_MODULE_0__["Table"]; });
 
 
 

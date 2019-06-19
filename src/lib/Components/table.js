@@ -8,6 +8,7 @@ import { getHeaders } from "./Header";
 
 const Table = props => {
   const [activePage, setActivePage] = useState(0);
+  const [showPagination, setShowPagination] = useState(false)
   const [showTable, shouldShowTable] = useState(props.options.defaultShowTable || true);
   const itemsPerPage = props.options.itemsPerPage || 10;
   const [rows, setRows] = useState([]);
@@ -24,6 +25,7 @@ const Table = props => {
 
   useEffect(() => {
     changePageWithData(1)
+    setShowPagination(props.rowData && props.rowData.length >= itemsPerPage);
   }, [props.rowData])
   const headerStyle = props.header && props.header.style ? props.header.style : {};
 
@@ -39,7 +41,7 @@ const Table = props => {
         )
       }
       {showTable && (<div className="panel-body table-responsive">
-        <table className="table table-hover" id={props.header}>
+        <table className="table table-hover">
           <thead>
             <tr>{getHeaders(props.colDef, props.options)}</tr>
           </thead>
@@ -47,7 +49,7 @@ const Table = props => {
             <Rows colDef={props.colDef} rowData={rows} options={props.options} />
           </tbody>
         </table>
-        {(props.rowData && props.rowData.length <= itemsPerPage) ? (
+        {showPagination && (
           <Pagination
             activePage={activePage}
             itemsCountPerPage={itemsPerPage}
@@ -56,7 +58,7 @@ const Table = props => {
             itemClass="page-item"
             linkClass="page-link"
           />
-        ) : <></>}
+        )}
       </div>)}
     </section>
   );
