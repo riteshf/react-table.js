@@ -15,14 +15,14 @@ const Table = props => {
     getDataWithinIndexRange(0, itemsPerPage, originalRows)
   );
 
-  const changePageWithData = (pageId = 1) => {
+  const changePageWithData = (pageId) => {
     const newRows = getDataWithinIndexRange(
       (pageId - 1) * itemsPerPage,
       pageId * itemsPerPage,
       originalRows
     );
     setRows(newRows);
-    setActivePage(newRows.length > itemsPerPage ? pageId - 1 : 0);
+    setActivePage(pageId);
   };
 
   const headerStyle = props.header && props.header.style ? props.header.style : {};

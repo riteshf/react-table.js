@@ -3,7 +3,7 @@ import { filterRows } from "../Utils/rows";
 
 const getRows = (colDef, rowData, options) => {
     const rows = options ? filterRows(colDef, rowData, options) : rowData;
-    return rows.map((row, key) => (
+    return rows ? rows.map((row, key) => (
         <tr key={key}>
             {colDef.map((header, key) => (
                 <td key={key} style={header.style || {}}>
@@ -11,7 +11,7 @@ const getRows = (colDef, rowData, options) => {
                 </td>
             ))}
         </tr>
-    ));
+    )): [];
 };
 
 export { getRows };
