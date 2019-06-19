@@ -20,7 +20,7 @@ const filterRows = (colDef, rowData, options) => {
 
 
 const getDataWithinIndexRange = (from, to, data) =>
-    data && data.filter((row, index) => index >= from && index < to);
+    data ? data.filter((row, index) => index >= from && index < to): [];
 
 
 export { getDataWithinIndexRange, filterRows };
