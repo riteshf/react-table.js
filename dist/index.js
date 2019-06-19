@@ -748,12 +748,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Utils_rows__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Utils/rows */ "./src/lib/Utils/rows.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var getRows = function getRows(colDef, rowData, options) {
+
+var getRows = function getRows(colDef, inputRowData, options) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(inputRowData),
+      _useState2 = _slicedToArray(_useState, 2),
+      rowData = _useState2[0],
+      setRows = _useState2[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    return setRows(inputRowData);
+  }, [inputRowData]);
   var rows = options ? Object(_Utils_rows__WEBPACK_IMPORTED_MODULE_1__["filterRows"])(colDef, rowData, options) : rowData;
-  return rows.map(function (row, key) {
+  return rows ? rows.map(function (row, key) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
       key: key
     }, colDef.map(function (header, key) {
@@ -762,7 +778,7 @@ var getRows = function getRows(colDef, rowData, options) {
         style: header.style || {}
       }, header.Cell ? header.Cell(row, key) : row[header.fieldName]);
     }));
-  });
+  }) : [];
 };
 
 
@@ -855,11 +871,10 @@ var Table = function Table(props) {
       rows = _useState6[0],
       setRows = _useState6[1];
 
-  var changePageWithData = function changePageWithData() {
-    var pageId = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+  var changePageWithData = function changePageWithData(pageId) {
     var newRows = Object(_Utils_rows__WEBPACK_IMPORTED_MODULE_4__["getDataWithinIndexRange"])((pageId - 1) * itemsPerPage, pageId * itemsPerPage, originalRows);
     setRows(newRows);
-    setActivePage(newRows.length > itemsPerPage ? pageId - 1 : 0);
+    setActivePage(pageId);
   };
 
   var headerStyle = props.header && props.header.style ? props.header.style : {};
@@ -914,9 +929,9 @@ var filterRows = function filterRows(colDef, rowData, options) {
 };
 
 var getDataWithinIndexRange = function getDataWithinIndexRange(from, to, data) {
-  return data && data.filter(function (row, index) {
+  return data ? data.filter(function (row, index) {
     return index >= from && index < to;
-  });
+  }) : [];
 };
 
 
