@@ -4,14 +4,14 @@ import { Sortable } from "./HeaderOptions"
 const Header = ({ colDef, options, sort }) => {
     const [columns, setColumns] = useState([]);
 
-    const updateCurrentState = (fieldName) => {
+    const updateCurrentState = (headerName) => {
         setColumns(columns.map(column => {
-            if (column.name === fieldName) {
-                column.options.sortBy = fieldName;
+            if (column.name === headerName) {
+                column.options.sortBy = headerName;
                 column.options.sortingOrder = column.options.sortingOrder === "ASC" ? "DESC" : "ASC";
                 sort({
-                    sortBy: fieldName,
-                    sortingOrder: column.options.sortingOrder,
+                    sortBy: headerName,
+                    sortingOrder: column.options.sortingOrder === "ASC" ? "DESC" : "ASC",
                 })
             } else {
                 delete column.options.sortBy;

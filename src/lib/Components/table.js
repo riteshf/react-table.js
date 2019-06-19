@@ -13,27 +13,27 @@ const Table = props => {
   const [rows, setRows] = useState([]);
   const [sortBy, setSortBy] = useState({
     sortBy: props.options.sortBy,
-    sortingOrder: props.options.sortingOrder
+    sortingOrder: props.options.sortingOrder || "ASC"
   });
-  
+
   const itemsPerPage = props.options.itemsPerPage || 10;
 
   const changePageWithData = (pageId) => {
+    const col = props.colDef.filter(col => col.name === sortBy.sortBy)[0];
+    const sortedData = sortData(props.rowData, col.fieldName, sortBy.sortingOrder);
+
     const newRows = getDataWithinIndexRange(
       (pageId - 1) * itemsPerPage,
       pageId * itemsPerPage,
-      props.rowData
+      sortedData
     );
     setRows(newRows);
     setActivePage(pageId);
   };
 
   useEffect(() => {
+    setShowPagination(props.rowData && props.rowData.length >= itemsPerPage);
     changePageWithData(1)
-    const col = props.colDef.filter(col => col.name === sortBy.sortBy)[0];
-    const sortedData = sortData(props.rowData, col.name, sortBy.sortingOrder);
-    setRows(sortedData);
-    setShowPagination(props.rowData && props.rowData >= itemsPerPage);
   }, [sortBy, props.rowData])
 
   const headerStyle = props.header && props.header.style ? props.header.style : {};
@@ -55,7 +55,7 @@ const Table = props => {
             <Header colDef={props.colDef} options={props.options} sort={setSortBy} />
           </thead>
           <tbody>
-            <Rows colDef={props.colDef} rowData={rows} options={props.options} />
+            <Rows colDef={props.colDef} rowData={rows || []} options={props.options} />
           </tbody>
         </table>
         {showPagination && (

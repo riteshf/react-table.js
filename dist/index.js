@@ -735,14 +735,14 @@ var Header = function Header(_ref) {
       columns = _useState2[0],
       setColumns = _useState2[1];
 
-  var updateCurrentState = function updateCurrentState(fieldName) {
+  var updateCurrentState = function updateCurrentState(headerName) {
     setColumns(columns.map(function (column) {
-      if (column.name === fieldName) {
-        column.options.sortBy = fieldName;
+      if (column.name === headerName) {
+        column.options.sortBy = headerName;
         column.options.sortingOrder = column.options.sortingOrder === "ASC" ? "DESC" : "ASC";
         sort({
-          sortBy: fieldName,
-          sortingOrder: column.options.sortingOrder
+          sortBy: headerName,
+          sortingOrder: column.options.sortingOrder === "ASC" ? "DESC" : "ASC"
         });
       } else {
         delete column.options.sortBy;
@@ -826,7 +826,7 @@ var Sortable = function Sortable(_ref) {
     return setShow(column.options.sortBy);
   }, [column.options.sortBy]);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, show && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__["FontAwesomeIcon"], {
-    icon: column.options.sortingOrder === "ASC" ? _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faSortUp"] : _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faSortDown"],
+    icon: column.options.sortingOrder === "DESC" ? _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faSortUp"] : _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faSortDown"],
     style: column.style || {}
   }));
 };
@@ -865,10 +865,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 
-var Rows = function Rows(_ref) {
-  var colDef = _ref.colDef,
+var Rows = function Rows() {
+  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+    rowData: []
+  },
+      colDef = _ref.colDef,
       rowData = _ref.rowData;
-  return rowData ? rowData.map(function (row, key) {
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, rowData.map(function (row, key) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
       key: key
     }, colDef.map(function (header, key) {
@@ -877,7 +881,7 @@ var Rows = function Rows(_ref) {
         style: header.style || {}
       }, header.Cell ? header.Cell(row, key) : row[header.fieldName]);
     }));
-  }) : [];
+  }));
 };
 
 
@@ -944,7 +948,7 @@ var Table = function Table(props) {
 
   var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
     sortBy: props.options.sortBy,
-    sortingOrder: props.options.sortingOrder
+    sortingOrder: props.options.sortingOrder || "ASC"
   }),
       _useState10 = _slicedToArray(_useState9, 2),
       sortBy = _useState10[0],
@@ -953,19 +957,18 @@ var Table = function Table(props) {
   var itemsPerPage = props.options.itemsPerPage || 10;
 
   var changePageWithData = function changePageWithData(pageId) {
-    var newRows = Object(_Utils_rows__WEBPACK_IMPORTED_MODULE_4__["getDataWithinIndexRange"])((pageId - 1) * itemsPerPage, pageId * itemsPerPage, props.rowData);
+    var col = props.colDef.filter(function (col) {
+      return col.name === sortBy.sortBy;
+    })[0];
+    var sortedData = Object(_Utils_rows__WEBPACK_IMPORTED_MODULE_4__["sortData"])(props.rowData, col.fieldName, sortBy.sortingOrder);
+    var newRows = Object(_Utils_rows__WEBPACK_IMPORTED_MODULE_4__["getDataWithinIndexRange"])((pageId - 1) * itemsPerPage, pageId * itemsPerPage, sortedData);
     setRows(newRows);
     setActivePage(pageId);
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    setShowPagination(props.rowData && props.rowData.length >= itemsPerPage);
     changePageWithData(1);
-    var col = props.colDef.filter(function (col) {
-      return col.name === sortBy.sortBy;
-    })[0];
-    var sortedData = Object(_Utils_rows__WEBPACK_IMPORTED_MODULE_4__["sortData"])(props.rowData, col.name, sortBy.sortingOrder);
-    setRows(sortedData);
-    setShowPagination(props.rowData && props.rowData >= itemsPerPage);
   }, [sortBy, props.rowData]);
   var headerStyle = props.header && props.header.style ? props.header.style : {};
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
@@ -987,7 +990,7 @@ var Table = function Table(props) {
     sort: setSortBy
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Rows__WEBPACK_IMPORTED_MODULE_5__["Rows"], {
     colDef: props.colDef,
-    rowData: rows,
+    rowData: rows || [],
     options: props.options
   }))), showPagination && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_js_pagination__WEBPACK_IMPORTED_MODULE_1___default.a, {
     activePage: activePage,

@@ -11,7 +11,8 @@ const App = () => {
     },
     colDef: [
       {
-        name: "a",
+        name: "a a",
+        fieldName: "a",
         style: { textAlign: "center" },
         options: {
           sortable: true,
@@ -24,9 +25,9 @@ const App = () => {
     ],
     rowData: rowData,
     options: {
-      sortBy: "b",
+      sortBy: "a a",
       sortingOrder: "ASC",
-      itemsPerPage: 10,
+      itemsPerPage: 5,
       defaultShowTable: true,
     },
   };

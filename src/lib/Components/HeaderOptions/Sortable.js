@@ -8,7 +8,7 @@ const Sortable = ({ column }) => {
     useEffect(() => setShow(column.options.sortBy), [column.options.sortBy])
     return (
         <>
-            {show && <FontAwesomeIcon icon={column.options.sortingOrder === "ASC" ? faSortUp : faSortDown} style={column.style || {}} />}
+            {show && <FontAwesomeIcon icon={column.options.sortingOrder === "DESC" ? faSortUp : faSortDown} style={column.style || {}} />}
         </>
     );
 }
