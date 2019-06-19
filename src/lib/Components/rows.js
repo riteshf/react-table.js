@@ -1,11 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { filterRows } from "../Utils/rows";
 
-const getRows = (colDef, inputRowData, options) => {
-    const [rowData, setRows] = useState(inputRowData);
-
-
-    useEffect(() => setRows(inputRowData), [inputRowData])
+const Rows = ({ colDef, rowData, options }) => {
 
     const rows = options ? filterRows(colDef, rowData, options) : rowData;
     return rows ? rows.map((row, key) => (
@@ -19,4 +15,4 @@ const getRows = (colDef, inputRowData, options) => {
     )) : [];
 };
 
-export { getRows };
+export { Rows };

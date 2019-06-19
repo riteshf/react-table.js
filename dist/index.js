@@ -701,6 +701,43 @@ module.exports = function (css) {
 
 /***/ }),
 
+/***/ "./src/lib/Components/Rows.js":
+/*!************************************!*\
+  !*** ./src/lib/Components/Rows.js ***!
+  \************************************/
+/*! exports provided: Rows */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Rows", function() { return Rows; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Utils_rows__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Utils/rows */ "./src/lib/Utils/rows.js");
+
+
+
+var Rows = function Rows(_ref) {
+  var colDef = _ref.colDef,
+      rowData = _ref.rowData,
+      options = _ref.options;
+  var rows = options ? Object(_Utils_rows__WEBPACK_IMPORTED_MODULE_1__["filterRows"])(colDef, rowData, options) : rowData;
+  return rows ? rows.map(function (row, key) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
+      key: key
+    }, colDef.map(function (header, key) {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
+        key: key,
+        style: header.style || {}
+      }, header.Cell ? header.Cell(row, key) : row[header.fieldName]);
+    }));
+  }) : [];
+};
+
+
+
+/***/ }),
+
 /***/ "./src/lib/Components/header.js":
 /*!**************************************!*\
   !*** ./src/lib/Components/header.js ***!
@@ -729,56 +766,6 @@ var getHeaders = function getHeaders(colDef, options) {
       style: header.style || {}
     }, header.name);
   });
-};
-
-
-
-/***/ }),
-
-/***/ "./src/lib/Components/rows.js":
-/*!************************************!*\
-  !*** ./src/lib/Components/rows.js ***!
-  \************************************/
-/*! exports provided: getRows */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getRows", function() { return getRows; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Utils_rows__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Utils/rows */ "./src/lib/Utils/rows.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-var getRows = function getRows(colDef, inputRowData, options) {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(inputRowData),
-      _useState2 = _slicedToArray(_useState, 2),
-      rowData = _useState2[0],
-      setRows = _useState2[1];
-
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    return setRows(inputRowData);
-  }, [inputRowData]);
-  var rows = options ? Object(_Utils_rows__WEBPACK_IMPORTED_MODULE_1__["filterRows"])(colDef, rowData, options) : rowData;
-  return rows ? rows.map(function (row, key) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-      key: key
-    }, colDef.map(function (header, key) {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        key: key,
-        style: header.style || {}
-      }, header.Cell ? header.Cell(row, key) : row[header.fieldName]);
-    }));
-  }) : [];
 };
 
 
@@ -834,7 +821,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _table_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./table.css */ "./src/lib/Components/table.css");
 /* harmony import */ var _table_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_table_css__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _Utils_rows__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Utils/rows */ "./src/lib/Utils/rows.js");
-/* harmony import */ var _rows__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./rows */ "./src/lib/Components/rows.js");
+/* harmony import */ var _Rows__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Rows */ "./src/lib/Components/Rows.js");
 /* harmony import */ var _header__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./header */ "./src/lib/Components/header.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
@@ -864,19 +851,21 @@ var Table = function Table(props) {
       shouldShowTable = _useState4[1];
 
   var itemsPerPage = props.options.itemsPerPage || 10;
-  var originalRows = Object(_rows__WEBPACK_IMPORTED_MODULE_5__["getRows"])(props.colDef, props.rowData, props.options);
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(Object(_Utils_rows__WEBPACK_IMPORTED_MODULE_4__["getDataWithinIndexRange"])(0, itemsPerPage, originalRows)),
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
       _useState6 = _slicedToArray(_useState5, 2),
       rows = _useState6[0],
       setRows = _useState6[1];
 
   var changePageWithData = function changePageWithData(pageId) {
-    var newRows = Object(_Utils_rows__WEBPACK_IMPORTED_MODULE_4__["getDataWithinIndexRange"])((pageId - 1) * itemsPerPage, pageId * itemsPerPage, originalRows);
+    var newRows = Object(_Utils_rows__WEBPACK_IMPORTED_MODULE_4__["getDataWithinIndexRange"])((pageId - 1) * itemsPerPage, pageId * itemsPerPage, props.rowData);
     setRows(newRows);
     setActivePage(pageId);
   };
 
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    changePageWithData(1);
+  }, [props.rowData]);
   var headerStyle = props.header && props.header.style ? props.header.style : {};
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
     className: "panel panel-default"
@@ -892,14 +881,18 @@ var Table = function Table(props) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
     className: "table table-hover",
     id: props.header
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, Object(_header__WEBPACK_IMPORTED_MODULE_6__["getHeaders"])(props.colDef, props.options))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, rows)), originalRows.length <= itemsPerPage || react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_js_pagination__WEBPACK_IMPORTED_MODULE_1___default.a, {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, Object(_header__WEBPACK_IMPORTED_MODULE_6__["getHeaders"])(props.colDef, props.options))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Rows__WEBPACK_IMPORTED_MODULE_5__["Rows"], {
+    colDef: props.colDef,
+    rowData: rows,
+    options: props.options
+  }))), props.rowData && props.rowData.length <= itemsPerPage ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_js_pagination__WEBPACK_IMPORTED_MODULE_1___default.a, {
     activePage: activePage,
     itemsCountPerPage: itemsPerPage,
-    totalItemsCount: originalRows.length,
+    totalItemsCount: props.rowData ? props.rowData.length : 0,
     onChange: changePageWithData,
     itemClass: "page-item",
     linkClass: "page-link"
-  })));
+  }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null)));
 };
 
 
