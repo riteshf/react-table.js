@@ -705,31 +705,142 @@ module.exports = function (css) {
 /*!**************************************!*\
   !*** ./src/lib/Components/Header.js ***!
   \**************************************/
-/*! exports provided: getHeaders */
+/*! exports provided: Header */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getHeaders", function() { return getHeaders; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Header", function() { return Header; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _HeaderOptions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./HeaderOptions */ "./src/lib/Components/HeaderOptions/index.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
-var getSortableView = function getSortableView() {};
 
-var applyOtherHeaderOptions = function applyOtherHeaderOptions(options, shouldSortBy, sortingOrder) {
-  var sortable = options.sortable;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, sortable ? getSortableView(shouldSortBy, sortingOrder) : null);
-};
 
-var getHeaders = function getHeaders(colDef, options) {
-  return colDef.map(function (header, key) {
+var Header = function Header(_ref) {
+  var colDef = _ref.colDef,
+      options = _ref.options;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      columns = _useState2[0],
+      setColumns = _useState2[1];
+
+  var updateCurrentState = function updateCurrentState(fieldName) {
+    setColumns(columns.map(function (column) {
+      if (column.name === fieldName) {
+        column.options.sortBy = fieldName;
+        column.options.sortingOrder = column.options.sortingOrder === "ASC" ? "DESC" : "ASC";
+      } else {
+        delete column.options.sortBy;
+        delete column.options.sortingOrder;
+      }
+
+      return column;
+    }));
+  };
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    setColumns(colDef.map(function (column) {
+      column.options = column.options || {};
+
+      if (column.name === options.sortBy) {
+        column.options.sortBy = options.sortBy;
+        column.options.sortingOrder = options.sortingOrder === "ASC" ? "DESC" : "ASC";
+      } else {
+        delete column.options.sortBy;
+        delete column.options.sortingOrder;
+      }
+
+      return column;
+    }));
+  }, []);
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, columns.map(function (column, key) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
       key: key,
-      style: header.style || {}
-    }, header.name);
-  });
+      style: column.style || {}
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      onClick: function onClick() {
+        return updateCurrentState(column.name);
+      }
+    }, column.name, "\xA0"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_HeaderOptions__WEBPACK_IMPORTED_MODULE_1__["Sortable"], {
+      column: column
+    }));
+  }));
 };
+
+
+
+/***/ }),
+
+/***/ "./src/lib/Components/HeaderOptions/Sortable.js":
+/*!******************************************************!*\
+  !*** ./src/lib/Components/HeaderOptions/Sortable.js ***!
+  \******************************************************/
+/*! exports provided: Sortable */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Sortable", function() { return Sortable; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "@fortawesome/react-fontawesome");
+/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "@fortawesome/free-solid-svg-icons");
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+var Sortable = function Sortable(_ref) {
+  var column = _ref.column;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(column.options.sortBy),
+      _useState2 = _slicedToArray(_useState, 2),
+      show = _useState2[0],
+      setShow = _useState2[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    return setShow(column.options.sortBy);
+  }, [column.options.sortBy]);
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, show && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__["FontAwesomeIcon"], {
+    icon: column.options.sortingOrder === "ASC" ? _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faSortUp"] : _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faSortDown"],
+    style: column.style || {}
+  }));
+};
+
+
+
+/***/ }),
+
+/***/ "./src/lib/Components/HeaderOptions/index.js":
+/*!***************************************************!*\
+  !*** ./src/lib/Components/HeaderOptions/index.js ***!
+  \***************************************************/
+/*! exports provided: Sortable */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Sortable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Sortable */ "./src/lib/Components/HeaderOptions/Sortable.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Sortable", function() { return _Sortable__WEBPACK_IMPORTED_MODULE_0__["Sortable"]; });
 
 
 
@@ -856,7 +967,10 @@ var Table = function Table(props) {
     className: "panel-body table-responsive"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
     className: "table table-hover"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, Object(_Header__WEBPACK_IMPORTED_MODULE_6__["getHeaders"])(props.colDef, props.options))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Rows__WEBPACK_IMPORTED_MODULE_5__["Rows"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Header__WEBPACK_IMPORTED_MODULE_6__["Header"], {
+    colDef: props.colDef,
+    options: props.options
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Rows__WEBPACK_IMPORTED_MODULE_5__["Rows"], {
     colDef: props.colDef,
     rowData: rows,
     options: props.options
@@ -949,6 +1063,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Table", function() { return _Components_Table__WEBPACK_IMPORTED_MODULE_0__["Table"]; });
 
 
+
+/***/ }),
+
+/***/ "@fortawesome/free-solid-svg-icons":
+/*!****************************************************!*\
+  !*** external "@fortawesome/free-solid-svg-icons" ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("@fortawesome/free-solid-svg-icons");
+
+/***/ }),
+
+/***/ "@fortawesome/react-fontawesome":
+/*!*************************************************!*\
+  !*** external "@fortawesome/react-fontawesome" ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("@fortawesome/react-fontawesome");
 
 /***/ }),
 

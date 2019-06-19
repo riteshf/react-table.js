@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import './table.css';
 import { getDataWithinIndexRange } from "../Utils/rows";
 import { Rows } from "./Rows";
-import { getHeaders } from "./Header";
+import { Header } from "./Header";
 
 const Table = props => {
   const [activePage, setActivePage] = useState(0);
@@ -43,7 +43,7 @@ const Table = props => {
       {showTable && (<div className="panel-body table-responsive">
         <table className="table table-hover">
           <thead>
-            <tr>{getHeaders(props.colDef, props.options)}</tr>
+              <Header colDef={props.colDef} options={props.options} />
           </thead>
           <tbody>
             <Rows colDef={props.colDef} rowData={rows} options={props.options} />
