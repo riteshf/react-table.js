@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { Sortable } from "./HeaderOptions"
-const Header = ({ colDef, options }) => {
+const Header = ({ colDef, options, sort }) => {
     const [columns, setColumns] = useState([]);
 
     const updateCurrentState = (fieldName) => {
@@ -9,6 +9,10 @@ const Header = ({ colDef, options }) => {
             if (column.name === fieldName) {
                 column.options.sortBy = fieldName;
                 column.options.sortingOrder = column.options.sortingOrder === "ASC" ? "DESC" : "ASC";
+                sort({
+                    sortBy: fieldName,
+                    sortingOrder: column.options.sortingOrder,
+                })
             } else {
                 delete column.options.sortBy;
                 delete column.options.sortingOrder;

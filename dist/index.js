@@ -727,7 +727,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var Header = function Header(_ref) {
   var colDef = _ref.colDef,
-      options = _ref.options;
+      options = _ref.options,
+      sort = _ref.sort;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
       _useState2 = _slicedToArray(_useState, 2),
@@ -739,6 +740,10 @@ var Header = function Header(_ref) {
       if (column.name === fieldName) {
         column.options.sortBy = fieldName;
         column.options.sortingOrder = column.options.sortingOrder === "ASC" ? "DESC" : "ASC";
+        sort({
+          sortBy: fieldName,
+          sortingOrder: column.options.sortingOrder
+        });
       } else {
         delete column.options.sortBy;
         delete column.options.sortingOrder;
@@ -858,16 +863,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Rows", function() { return Rows; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Utils_rows__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Utils/rows */ "./src/lib/Utils/rows.js");
-
 
 
 var Rows = function Rows(_ref) {
   var colDef = _ref.colDef,
-      rowData = _ref.rowData,
-      options = _ref.options;
-  var rows = options ? Object(_Utils_rows__WEBPACK_IMPORTED_MODULE_1__["filterRows"])(colDef, rowData, options) : rowData;
-  return rows ? rows.map(function (row, key) {
+      rowData = _ref.rowData;
+  return rowData ? rowData.map(function (row, key) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
       key: key
     }, colDef.map(function (header, key) {
@@ -936,12 +937,20 @@ var Table = function Table(props) {
       showTable = _useState6[0],
       shouldShowTable = _useState6[1];
 
-  var itemsPerPage = props.options.itemsPerPage || 10;
-
   var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
       _useState8 = _slicedToArray(_useState7, 2),
       rows = _useState8[0],
       setRows = _useState8[1];
+
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    sortBy: props.options.sortBy,
+    sortingOrder: props.options.sortingOrder
+  }),
+      _useState10 = _slicedToArray(_useState9, 2),
+      sortBy = _useState10[0],
+      setSortBy = _useState10[1];
+
+  var itemsPerPage = props.options.itemsPerPage || 10;
 
   var changePageWithData = function changePageWithData(pageId) {
     var newRows = Object(_Utils_rows__WEBPACK_IMPORTED_MODULE_4__["getDataWithinIndexRange"])((pageId - 1) * itemsPerPage, pageId * itemsPerPage, props.rowData);
@@ -951,8 +960,13 @@ var Table = function Table(props) {
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     changePageWithData(1);
-    setShowPagination(props.rowData && props.rowData.length >= itemsPerPage);
-  }, [props.rowData]);
+    var col = props.colDef.filter(function (col) {
+      return col.name === sortBy.sortBy;
+    })[0];
+    var sortedData = Object(_Utils_rows__WEBPACK_IMPORTED_MODULE_4__["sortData"])(props.rowData, col.name, sortBy.sortingOrder);
+    setRows(sortedData);
+    setShowPagination(props.rowData && props.rowData >= itemsPerPage);
+  }, [sortBy, props.rowData]);
   var headerStyle = props.header && props.header.style ? props.header.style : {};
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
     className: "panel panel-default"
@@ -969,7 +983,8 @@ var Table = function Table(props) {
     className: "table table-hover"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Header__WEBPACK_IMPORTED_MODULE_6__["Header"], {
     colDef: props.colDef,
-    options: props.options
+    options: props.options,
+    sort: setSortBy
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Rows__WEBPACK_IMPORTED_MODULE_5__["Rows"], {
     colDef: props.colDef,
     rowData: rows,
@@ -1022,22 +1037,22 @@ if(false) {}
 /*!*******************************!*\
   !*** ./src/lib/Utils/rows.js ***!
   \*******************************/
-/*! exports provided: getDataWithinIndexRange, filterRows */
+/*! exports provided: getDataWithinIndexRange, sortData */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDataWithinIndexRange", function() { return getDataWithinIndexRange; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filterRows", function() { return filterRows; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sortData", function() { return sortData; });
 var sortData = function sortData(data, fieldName, order) {
-  if (!fieldName) return data;else return data;
-};
-
-var filterRows = function filterRows(colDef, rowData, options) {
-  var rows = sortData(rowData, colDef.reduce(function (column, crrCol) {
-    return column = options.sortBy === crrCol.name ? crrCol.fieldName : column;
-  }, ""), options.sortingOrder);
-  return rows;
+  if (data && data.length > 1) {
+    var newData = data.sort(function (a, b) {
+      return a[fieldName] - b[fieldName];
+    });
+    return order === 'ASC' ? newData : newData.reverse();
+  } else {
+    return data;
+  }
 };
 
 var getDataWithinIndexRange = function getDataWithinIndexRange(from, to, data) {

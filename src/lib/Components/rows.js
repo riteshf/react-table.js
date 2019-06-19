@@ -1,10 +1,8 @@
 import React from "react";
-import { filterRows } from "../Utils/rows";
 
-const Rows = ({ colDef, rowData, options }) => {
+const Rows = ({ colDef, rowData }) => {
 
-    const rows = options ? filterRows(colDef, rowData, options) : rowData;
-    return rows ? rows.map((row, key) => (
+    return rowData ? rowData.map((row, key) => (
         <tr key={key}>
             {colDef.map((header, key) => (
                 <td key={key} style={header.style || {}}>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Pagination from "react-js-pagination";
 import "bootstrap/dist/css/bootstrap.css";
 import './table.css';
-import { getDataWithinIndexRange } from "../Utils/rows";
+import { getDataWithinIndexRange, sortData } from "../Utils/rows";
 import { Rows } from "./Rows";
 import { Header } from "./Header";
 
@@ -10,8 +10,13 @@ const Table = props => {
   const [activePage, setActivePage] = useState(0);
   const [showPagination, setShowPagination] = useState(false)
   const [showTable, shouldShowTable] = useState(props.options.defaultShowTable || true);
-  const itemsPerPage = props.options.itemsPerPage || 10;
   const [rows, setRows] = useState([]);
+  const [sortBy, setSortBy] = useState({
+    sortBy: props.options.sortBy,
+    sortingOrder: props.options.sortingOrder
+  });
+  
+  const itemsPerPage = props.options.itemsPerPage || 10;
 
   const changePageWithData = (pageId) => {
     const newRows = getDataWithinIndexRange(
@@ -25,8 +30,12 @@ const Table = props => {
 
   useEffect(() => {
     changePageWithData(1)
-    setShowPagination(props.rowData && props.rowData.length >= itemsPerPage);
-  }, [props.rowData])
+    const col = props.colDef.filter(col => col.name === sortBy.sortBy)[0];
+    const sortedData = sortData(props.rowData, col.name, sortBy.sortingOrder);
+    setRows(sortedData);
+    setShowPagination(props.rowData && props.rowData >= itemsPerPage);
+  }, [sortBy, props.rowData])
+
   const headerStyle = props.header && props.header.style ? props.header.style : {};
 
   return (
@@ -43,7 +52,7 @@ const Table = props => {
       {showTable && (<div className="panel-body table-responsive">
         <table className="table table-hover">
           <thead>
-              <Header colDef={props.colDef} options={props.options} />
+            <Header colDef={props.colDef} options={props.options} sort={setSortBy} />
           </thead>
           <tbody>
             <Rows colDef={props.colDef} rowData={rows} options={props.options} />

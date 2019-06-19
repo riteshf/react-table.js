@@ -1,26 +1,15 @@
 const sortData = (data, fieldName, order) => {
-    if (!fieldName) return data;
-    else return data;
+    if (data && data.length > 1) {
+        const newData = data.sort((a, b) => a[fieldName] - b[fieldName])
+        return order === 'ASC' ? newData : newData.reverse();
+    } else {
+        return data;
+    }
 
 }
 
-const filterRows = (colDef, rowData, options) => {
-    const rows = sortData(
-        rowData,
-        colDef.reduce(
-            (column, crrCol) =>
-                (column =
-                    options.sortBy === crrCol.name ? crrCol.fieldName : column),
-            ""
-        ),
-        options.sortingOrder
-    );
-    return rows;
-};
-
-
 const getDataWithinIndexRange = (from, to, data) =>
-    data ? data.filter((row, index) => index >= from && index < to): [];
+    data ? data.filter((row, index) => index >= from && index < to) : [];
 
 
-export { getDataWithinIndexRange, filterRows };
+export { getDataWithinIndexRange, sortData };
