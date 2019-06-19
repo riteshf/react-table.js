@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import './table.css';
 import { getDataWithinIndexRange } from "../Utils/rows";
 import { Rows } from "./Rows";
-import { getHeaders } from "./header";
+import { getHeaders } from "./Header";
 
 const Table = props => {
   const [activePage, setActivePage] = useState(0);

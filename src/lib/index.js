@@ -1,1 +1,1 @@
-export {Table} from './Components/table';
+export {Table} from './Components/Table';
