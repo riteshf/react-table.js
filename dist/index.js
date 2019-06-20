@@ -714,6 +714,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _table__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./table */ "./src/lib/Components/table/index.js");
+/* harmony import */ var _header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./header */ "./src/lib/Components/header/index.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -725,23 +726,23 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var Container = function Container(props) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.options.defaultShowTable || true),
       _useState2 = _slicedToArray(_useState, 2),
       showTable = _useState2[0],
       shouldShowTable = _useState2[1];
 
-  var headerStyle = props.header && props.header.style ? props.header.style : {};
+  var setShowTable = function setShowTable() {
+    return shouldShowTable(!showTable);
+  };
+
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
     className: "panel panel-default"
-  }, props.header && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
-    className: "panel-heading",
-    style: headerStyle
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    onClick: function onClick() {
-      return shouldShowTable(!showTable);
-    }
-  }, props.header.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, props.header && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_header__WEBPACK_IMPORTED_MODULE_2__["Header"], {
+    header: props.header,
+    showTable: setShowTable
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "panel-body"
   }, showTable && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_table__WEBPACK_IMPORTED_MODULE_1__["Table"], {
     colDef: props.colDef,
@@ -899,6 +900,52 @@ var Sortable = function Sortable(_ref) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Column__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Column */ "./src/lib/Components/column/Column.js");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Column", function() { return _Column__WEBPACK_IMPORTED_MODULE_0__["Column"]; });
+
+
+
+/***/ }),
+
+/***/ "./src/lib/Components/header/Header.js":
+/*!*********************************************!*\
+  !*** ./src/lib/Components/header/Header.js ***!
+  \*********************************************/
+/*! exports provided: Header */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Header", function() { return Header; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var Header = function Header(props) {
+  var headerStyle = props.header && props.header.style ? props.header.style : {};
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
+    className: "panel-heading",
+    style: headerStyle
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    onClick: function onClick() {
+      return props.showTable();
+    }
+  }, props.header.name));
+};
+
+
+
+/***/ }),
+
+/***/ "./src/lib/Components/header/index.js":
+/*!********************************************!*\
+  !*** ./src/lib/Components/header/index.js ***!
+  \********************************************/
+/*! exports provided: Header */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Header */ "./src/lib/Components/header/Header.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Header", function() { return _Header__WEBPACK_IMPORTED_MODULE_0__["Header"]; });
 
 
 
