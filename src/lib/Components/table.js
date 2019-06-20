@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Pagination from "react-js-pagination";
 import "bootstrap/dist/css/bootstrap.css";
 import './table.css';
-import { getDataWithinIndexRange, sortData } from "../Utils/rows";
+import { getDataWithinIndexRange, getSortedData } from "../Utils/rows";
 import { Rows } from "./Rows";
 import { Header } from "./Header";
 
@@ -19,9 +19,7 @@ const Table = props => {
   const itemsPerPage = props.options.itemsPerPage || 10;
 
   const changePageWithData = (pageId) => {
-    const col = props.colDef.filter(col => col.name === sortBy.sortBy)[0];
-    const sortedData = sortData(props.rowData, col.fieldName, sortBy.sortingOrder);
-    console.log(sortedData && sortedData.map(row => row[col.fieldName]));
+    const sortedData =  getSortedData(props.colDef, props.rowData, sortBy)
     const newRows = getDataWithinIndexRange(
       (pageId - 1) * itemsPerPage,
       pageId * itemsPerPage,

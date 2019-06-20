@@ -957,13 +957,7 @@ var Table = function Table(props) {
   var itemsPerPage = props.options.itemsPerPage || 10;
 
   var changePageWithData = function changePageWithData(pageId) {
-    var col = props.colDef.filter(function (col) {
-      return col.name === sortBy.sortBy;
-    })[0];
-    var sortedData = Object(_Utils_rows__WEBPACK_IMPORTED_MODULE_4__["sortData"])(props.rowData, col.fieldName, sortBy.sortingOrder);
-    console.log(sortedData && sortedData.map(function (row) {
-      return row[col.fieldName];
-    }));
+    var sortedData = Object(_Utils_rows__WEBPACK_IMPORTED_MODULE_4__["getSortedData"])(props.colDef, props.rowData, sortBy);
     var newRows = Object(_Utils_rows__WEBPACK_IMPORTED_MODULE_4__["getDataWithinIndexRange"])((pageId - 1) * itemsPerPage, pageId * itemsPerPage, sortedData);
     setRows(newRows);
     setActivePage(pageId);
@@ -1043,13 +1037,19 @@ if(false) {}
 /*!*******************************!*\
   !*** ./src/lib/Utils/rows.js ***!
   \*******************************/
-/*! exports provided: getDataWithinIndexRange, sortData */
+/*! exports provided: getDataWithinIndexRange, getSortedData */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDataWithinIndexRange", function() { return getDataWithinIndexRange; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sortData", function() { return sortData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getSortedData", function() { return getSortedData; });
+var getDataWithinIndexRange = function getDataWithinIndexRange(from, to, data) {
+  return data ? data.filter(function (row, index) {
+    return index >= from && index < to;
+  }) : [];
+};
+
 var numberSort = function numberSort(a, b) {
   return a - b;
 };
@@ -1059,7 +1059,7 @@ var stringSort = function stringSort(a, b) {
 };
 
 var sortData = function sortData(data, fieldName, order) {
-  if (data && data.length > 1) {
+  if (fieldName && data && data.length > 1) {
     var newData = data.sort(function (a, b) {
       typeof a[fieldName] === 'number' ? numberSort(a[fieldName], b[fieldName]) : stringSort(a[fieldName], b[fieldName]);
     });
@@ -1069,10 +1069,20 @@ var sortData = function sortData(data, fieldName, order) {
   }
 };
 
-var getDataWithinIndexRange = function getDataWithinIndexRange(from, to, data) {
-  return data ? data.filter(function (row, index) {
-    return index >= from && index < to;
-  }) : [];
+var getFieldNameIfSortable = function getFieldNameIfSortable(columns, headerName) {
+  var col = columns.filter(function (col) {
+    return col.name === headerName && col.options && col.options.sortable;
+  })[0];
+  return col.fieldName;
+};
+
+var getSortedData = function getSortedData(colDef, rowData, sortBy) {
+  if (sortBy.sortBy) {
+    var fieldName = getFieldNameIfSortable(colDef, sortBy.sortBy);
+    return sortData(rowData, fieldName, sortBy.sortingOrder);
+  } else {
+    return rowData;
+  }
 };
 
 
