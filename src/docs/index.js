@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import "bootstrap/dist/css/bootstrap.css";
 import ReactDOM from 'react-dom';
 import { Table } from '../lib';
 

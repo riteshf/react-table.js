@@ -1,6 +1,6 @@
 import React from "react";
 
-const Rows = ({ colDef, rowData } = { rowData: [] }) => {
+const Row = ({ colDef, rowData } = { rowData: [] }) => {
     return (
         <>
             {rowData.map((row, key) => (
@@ -16,4 +16,4 @@ const Rows = ({ colDef, rowData } = { rowData: [] }) => {
     )
 };
 
-export { Rows };
+export { Row };

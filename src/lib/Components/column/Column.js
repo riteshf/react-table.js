@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-import { Sortable } from "./HeaderOptions"
-const Header = ({ colDef, options, sort }) => {
+import { Sortable } from "./Sortable"
+const Column = ({ colDef, options, sort }) => {
     const [columns, setColumns] = useState([]);
 
     const updateCurrentState = (headerName) => {
@@ -46,4 +46,4 @@ const Header = ({ colDef, options, sort }) => {
     );
 };
 
-export { Header };
+export { Column };
