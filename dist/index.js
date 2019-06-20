@@ -961,6 +961,9 @@ var Table = function Table(props) {
       return col.name === sortBy.sortBy;
     })[0];
     var sortedData = Object(_Utils_rows__WEBPACK_IMPORTED_MODULE_4__["sortData"])(props.rowData, col.fieldName, sortBy.sortingOrder);
+    console.log(sortedData && sortedData.map(function (row) {
+      return row[col.fieldName];
+    }));
     var newRows = Object(_Utils_rows__WEBPACK_IMPORTED_MODULE_4__["getDataWithinIndexRange"])((pageId - 1) * itemsPerPage, pageId * itemsPerPage, sortedData);
     setRows(newRows);
     setActivePage(pageId);
@@ -1047,10 +1050,18 @@ if(false) {}
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDataWithinIndexRange", function() { return getDataWithinIndexRange; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sortData", function() { return sortData; });
+var numberSort = function numberSort(a, b) {
+  return a - b;
+};
+
+var stringSort = function stringSort(a, b) {
+  return a.toUpperCase() < b.toUpperCase() ? -1 : 1;
+};
+
 var sortData = function sortData(data, fieldName, order) {
   if (data && data.length > 1) {
     var newData = data.sort(function (a, b) {
-      return a[fieldName] - b[fieldName];
+      typeof a[fieldName] === 'number' ? numberSort(a[fieldName], b[fieldName]) : stringSort(a[fieldName], b[fieldName]);
     });
     return order === 'ASC' ? newData : newData.reverse();
   } else {

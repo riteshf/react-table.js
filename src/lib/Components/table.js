@@ -21,7 +21,7 @@ const Table = props => {
   const changePageWithData = (pageId) => {
     const col = props.colDef.filter(col => col.name === sortBy.sortBy)[0];
     const sortedData = sortData(props.rowData, col.fieldName, sortBy.sortingOrder);
-
+    console.log(sortedData && sortedData.map(row => row[col.fieldName]));
     const newRows = getDataWithinIndexRange(
       (pageId - 1) * itemsPerPage,
       pageId * itemsPerPage,
