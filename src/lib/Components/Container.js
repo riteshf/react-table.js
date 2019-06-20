@@ -1,23 +1,15 @@
 import React, { useState } from "react";
 import { Table }  from './table';
+import { Header }  from './header';
 
 const Container = props => {
   const [showTable, shouldShowTable] = useState(props.options.defaultShowTable || true);
-  const headerStyle = props.header && props.header.style ? props.header.style : {};
-
+  const setShowTable = () => shouldShowTable(!showTable)
   return (
     <section className="panel panel-default">
-      {
-        props.header && (
-          <header className="panel-heading" style={headerStyle}>
-            <div onClick={() => shouldShowTable(!showTable)}>
-              {props.header.name}
-            </div>
-          </header>
-        )
-      }
+      {props.header && <Header header={props.header} showTable={setShowTable} />}
       <div className="panel-body">
-        {showTable && (<Table colDef={props.colDef} rowData={props.rowData} options={props.options}/>)}
+        {showTable && <Table colDef={props.colDef} rowData={props.rowData} options={props.options}/>}
       </div>
     </section>
   );
