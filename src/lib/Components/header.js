@@ -37,10 +37,10 @@ const Header = ({ colDef, options, sort }) => {
     return (
         <tr>{columns.map((column, key) => (
             <th key={key} style={column.style || {}}>
-                <span onClick={() => updateCurrentState(column.name)}>
+                <span onClick={() => column.options.sortable && updateCurrentState(column.name)}>
                     {column.name}&nbsp;
                 </span>
-                <Sortable column={column} />
+                {column.options.sortable ? <Sortable column={column} /> : null}
             </th>
         ))}</tr>
     );

@@ -774,11 +774,11 @@ var Header = function Header(_ref) {
       style: column.style || {}
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       onClick: function onClick() {
-        return updateCurrentState(column.name);
+        return column.options.sortable && updateCurrentState(column.name);
       }
-    }, column.name, "\xA0"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_HeaderOptions__WEBPACK_IMPORTED_MODULE_1__["Sortable"], {
+    }, column.name, "\xA0"), column.options.sortable ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_HeaderOptions__WEBPACK_IMPORTED_MODULE_1__["Sortable"], {
       column: column
-    }));
+    }) : null);
   }));
 };
 
