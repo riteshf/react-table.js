@@ -6,21 +6,17 @@ import { Header } from './header';
 
 const getSearchableFieldNames = (columns) => columns
   .filter(column => column.options && column.options.searchable)
-  .map(column => {
-    console.log(column)
-    return column.fieldName
-  });
+  .map(column => column.fieldName);
 
 
 const filterData = (searchString = '', columns = [], rows = []) => {
   const fieldNames = getSearchableFieldNames(columns);
-  console.log(fieldNames);
-  return searchString ? rows.filter(row => {
-    return fieldNames.filter(
-      field => String(row[field]).toLowerCase().startsWith(searchString.toLowerCase())
-    ).length
-  }) : rows;
-
+  return searchString ? rows
+    .filter(row => fieldNames
+      .filter(
+        field => String(row[field]).toLowerCase().startsWith(searchString.toLowerCase())
+      ).length
+    ) : rows;
 }
 
 const Container = props => {

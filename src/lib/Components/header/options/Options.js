@@ -10,7 +10,7 @@ const Options = ({ options: { keyValueFilters = [], search = false, refresh }, o
         <Row className="pull-right">
             {keyValueFilters.map((kVF, i) => (
                 <Col key={i}>
-                    <KeyValueFilter {...kVF}/>
+                    <KeyValueFilter {...kVF} />
                 </Col>
             ))}
             <Col md={4}>
@@ -18,7 +18,7 @@ const Options = ({ options: { keyValueFilters = [], search = false, refresh }, o
             </Col>
             <Col md={1}>
                 {refresh && <div
-                    onChange={refresh.onChange}>
+                    onClick={refresh.onChange}>
                     <FontAwesomeIcon
                         icon={faSync}
                         style={refresh.style || {}}
