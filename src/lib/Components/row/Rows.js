@@ -1,5 +1,6 @@
 import React, { useState, Fragment } from 'react';
-import { Row} from './Row';
+import { Row } from './Row';
+import { AfterRow } from './AfterRow';
 
 
 const Rows = ({ colDef, rowData }) => {
@@ -10,12 +11,12 @@ const Rows = ({ colDef, rowData }) => {
             {rowData.map((row, key) => (
                 <Fragment key={key}>
                     <Row columns={colDef} row={row} rowIndex={key} setAfterRow={setAfterRow} />
-                    {afterRow && <AfterRow
+                    <AfterRow
                         afterRow={afterRow}
                         currentIndex={key}
                         colSpan={colDef.length}
                         row={row}
-                    />}
+                    />
                 </Fragment>
             ))}
         </>

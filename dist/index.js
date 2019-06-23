@@ -1231,6 +1231,81 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/lib/Components/row/AfterRow.js":
+/*!********************************************!*\
+  !*** ./src/lib/Components/row/AfterRow.js ***!
+  \********************************************/
+/*! exports provided: AfterRow */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AfterRow", function() { return AfterRow; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var AfterRow = function AfterRow() {
+  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      _ref$afterRow = _ref.afterRow,
+      afterRow = _ref$afterRow === void 0 ? {
+    index: null,
+    Cell: null
+  } : _ref$afterRow,
+      _ref$currentIndex = _ref.currentIndex,
+      currentIndex = _ref$currentIndex === void 0 ? null : _ref$currentIndex,
+      _ref$colSpan = _ref.colSpan,
+      colSpan = _ref$colSpan === void 0 ? 2 : _ref$colSpan;
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, afterRow && afterRow.index === currentIndex ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
+    colSpan: colSpan
+  }, afterRow.Cell)) : null);
+};
+
+
+
+/***/ }),
+
+/***/ "./src/lib/Components/row/Cell.js":
+/*!****************************************!*\
+  !*** ./src/lib/Components/row/Cell.js ***!
+  \****************************************/
+/*! exports provided: Cell */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Cell", function() { return Cell; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var Cell = function Cell(_ref) {
+  var _ref$style = _ref.style,
+      style = _ref$style === void 0 ? {} : _ref$style,
+      _ref$value = _ref.value,
+      value = _ref$value === void 0 ? "" : _ref$value,
+      _ref$cellIndex = _ref.cellIndex,
+      cellIndex = _ref$cellIndex === void 0 ? null : _ref$cellIndex,
+      setAfterRow = _ref.setAfterRow,
+      cellOptions = _ref.cellOptions;
+
+  var checkAndSetAfterRow = function checkAndSetAfterRow(afterRow) {
+    return afterRow.index === cellIndex && setAfterRow(afterRow);
+  };
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
+    style: style,
+    onClick: function onClick() {
+      return checkAndSetAfterRow(cellOptions.afterRow);
+    }
+  }, value);
+};
+
+
+
+/***/ }),
+
 /***/ "./src/lib/Components/row/Row.js":
 /*!***************************************!*\
   !*** ./src/lib/Components/row/Row.js ***!
@@ -1243,23 +1318,86 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Row", function() { return Row; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Cell__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Cell */ "./src/lib/Components/row/Cell.js");
+
 
 
 var Row = function Row() {
   var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-    rowData: []
+    columns: [],
+    row: {},
+    rowIndex: null
   },
-      colDef = _ref.colDef,
+      columns = _ref.columns,
+      row = _ref.row,
+      rowIndex = _ref.rowIndex,
+      setAfterRow = _ref.setAfterRow;
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, columns.map(function (column, key) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
+      key: key
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Cell__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
+      cellIndex: rowIndex,
+      setAfterRow: setAfterRow,
+      cellOptions: column.options,
+      style: column.style || {},
+      value: column.Cell ? column.Cell(row, key) : row[column.fieldName]
+    }));
+  }));
+};
+
+
+
+/***/ }),
+
+/***/ "./src/lib/Components/row/Rows.js":
+/*!****************************************!*\
+  !*** ./src/lib/Components/row/Rows.js ***!
+  \****************************************/
+/*! exports provided: Rows */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Rows", function() { return Rows; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Row__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Row */ "./src/lib/Components/row/Row.js");
+/* harmony import */ var _AfterRow__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AfterRow */ "./src/lib/Components/row/AfterRow.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+var Rows = function Rows(_ref) {
+  var colDef = _ref.colDef,
       rowData = _ref.rowData;
 
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
+      _useState2 = _slicedToArray(_useState, 2),
+      afterRow = _useState2[0],
+      setAfterRow = _useState2[1];
+
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, rowData.map(function (row, key) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
       key: key
-    }, colDef.map(function (header, key) {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        key: key,
-        style: header.style || {}
-      }, header.Cell ? header.Cell(row, key) : row[header.fieldName]);
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Row__WEBPACK_IMPORTED_MODULE_1__["Row"], {
+      columns: colDef,
+      row: row,
+      rowIndex: key,
+      setAfterRow: setAfterRow
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AfterRow__WEBPACK_IMPORTED_MODULE_2__["AfterRow"], {
+      afterRow: afterRow,
+      currentIndex: key,
+      colSpan: colDef.length,
+      row: row
     }));
   }));
 };
@@ -1272,13 +1410,13 @@ var Row = function Row() {
 /*!*****************************************!*\
   !*** ./src/lib/Components/row/index.js ***!
   \*****************************************/
-/*! exports provided: Row */
+/*! exports provided: Rows */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Row__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Row */ "./src/lib/Components/row/Row.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Row", function() { return _Row__WEBPACK_IMPORTED_MODULE_0__["Row"]; });
+/* harmony import */ var _Rows__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Rows */ "./src/lib/Components/row/Rows.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Rows", function() { return _Rows__WEBPACK_IMPORTED_MODULE_0__["Rows"]; });
 
 
 
@@ -1363,7 +1501,7 @@ var Table = function Table(props) {
     colDef: props.colDef,
     options: props.options,
     sort: setSortBy
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_row__WEBPACK_IMPORTED_MODULE_4__["Row"], {
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_row__WEBPACK_IMPORTED_MODULE_4__["Rows"], {
     colDef: props.colDef,
     rowData: rows || [],
     options: props.options
