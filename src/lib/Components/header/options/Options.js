@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Row, Col } from 'react-bootstrap';
 import KeyValueFilter from './KeyValueFilter';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -6,7 +6,6 @@ import { faSync } from "@fortawesome/free-solid-svg-icons";
 import { SearchBox } from "./Search";
 
 const Options = ({ options: { keyValueFilters = [], search, refresh, create }, onSearch } = {}) => {
-    console.log(create)
     return (
         <Row style={{ flexDirection: 'row-reverse' }}>
 
@@ -22,10 +21,7 @@ const Options = ({ options: { keyValueFilters = [], search, refresh, create }, o
                     </div>
                 </Col>}
             {" "}
-            {create && <Col md={2}>
-                {create()}
-                {" "}
-            </Col>}
+            {create && <Col md={2}>{create}</Col>}
             {search && <SearchBox onSearch={onSearch} />}
             {" "}
             {keyValueFilters.map((kVF, i) => (

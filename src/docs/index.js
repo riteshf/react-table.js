@@ -3,14 +3,15 @@ import "bootstrap/dist/css/bootstrap.css";
 import ReactDOM from 'react-dom';
 import { Table } from '../lib';
 import './index.css';
-import { faAddressBook } from '@fortawesome/free-solid-svg-icons';
+import { faAddressBook, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Button } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const App = () => {
   const [rowData, setRowData] = useState(null)
 
-  const filterchange = () => {
-    console.log("filter change")
+  const filterchange = (newField, newValue) => {
+    console.log("filter change", newField, newValue)
   }
   const tableOptions = {
     header: {
@@ -42,9 +43,14 @@ const App = () => {
             label: "Uploaded Since",
             onFilterChange: filterchange,
           }
-        ]
+        ],
+        create: (
+          <Button variant='primary' onClick={filterchange}>
+            <FontAwesomeIcon icon={faPlus} />
+            {" "}
+            Create
+          </Button>)
       },
-      create: <Button variant='primary' onClick={filterchange}>Create</Button>
     },
     colDef: [
       {
@@ -97,7 +103,7 @@ const App = () => {
     }, 3000)
   }, [])
   return (
-    <div className="container">
+    <div className="container" style={{ marginTop: '30px' }}>
       <Table {...tableOptions} />
     </div>
   )

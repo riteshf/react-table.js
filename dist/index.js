@@ -1049,7 +1049,7 @@ var KeyValueFilter = function KeyValueFilter(_ref) {
 
   var changeFilter = function changeFilter(newField) {
     updateDefaultValue(newField);
-    onFilterChange(newField);
+    onFilterChange(newField, valueObject[newField]);
   };
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
@@ -1115,7 +1115,6 @@ var Options = function Options() {
       create = _ref$options.create,
       onSearch = _ref.onSearch;
 
-  console.log(create);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], {
     style: {
       flexDirection: 'row-reverse'
@@ -1130,7 +1129,7 @@ var Options = function Options() {
     style: refresh.style || {}
   }))), " ", create && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], {
     md: 2
-  }, create(), " "), search && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Search__WEBPACK_IMPORTED_MODULE_5__["SearchBox"], {
+  }, create), search && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Search__WEBPACK_IMPORTED_MODULE_5__["SearchBox"], {
     onSearch: onSearch
   }), " ", keyValueFilters.map(function (kVF, i) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], {

@@ -11,7 +11,7 @@ const KeyValueFilter = ({
     const [newValue, updateDefaultValue] = React.useState(defaultValue);
     const changeFilter = (newField) => {
         updateDefaultValue(newField);
-        onFilterChange(newField);
+        onFilterChange(newField, valueObject[newField]);
     };
 
     return (
