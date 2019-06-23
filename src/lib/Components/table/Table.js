@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Pagination from "react-js-pagination";
 import './table.css';
 import { getDataWithinIndexRange, getSortedData } from "../../Utils/rows";
-import { Row as RowData } from "../row";
+import { Rows } from "../row";
 import { Column } from "../column";
 
 const Table = props => {
@@ -40,7 +40,7 @@ const Table = props => {
           <Column colDef={props.colDef} options={props.options} sort={setSortBy} />
         </thead>
         <tbody>
-          <RowData colDef={props.colDef} rowData={rows || []} options={props.options} />
+          <Rows colDef={props.colDef} rowData={rows || []} options={props.options} />
         </tbody>
       </table>
       {showPagination && (

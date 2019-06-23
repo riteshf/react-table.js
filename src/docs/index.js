@@ -3,12 +3,13 @@ import "bootstrap/dist/css/bootstrap.css";
 import ReactDOM from 'react-dom';
 import { Table } from '../lib';
 import './index.css';
-import { faAddressBook, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faAddressBook, faPlus, faMinusCircle, faMinusSquare, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const App = () => {
   const [rowData, setRowData] = useState(null)
+  const [afterRowIndex, setAfterRowIndex] = useState(null)
 
   const filterchange = (newField, newValue) => {
     console.log("filter change", newField, newValue)
@@ -53,6 +54,23 @@ const App = () => {
       },
     },
     colDef: [
+      {
+        name: "",
+        fieldName: "",
+        style: { textAlign: "center", width: '10px' },
+        options: {
+          afterRow: {
+            index: afterRowIndex,
+            Cell: <h1>Hi</h1>,
+          },
+        },
+        Cell: (row, index) => (
+          <span onClick={() => setAfterRowIndex(afterRowIndex === index ? null : index)}>
+            <FontAwesomeIcon
+              icon={afterRowIndex ? faMinusSquare : faPlusSquare} />
+          </span>
+        ),
+      },
       {
         name: "a a",
         fieldName: "a",
