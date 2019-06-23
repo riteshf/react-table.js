@@ -2,26 +2,67 @@ import React, { useState, useEffect } from 'react';
 import "bootstrap/dist/css/bootstrap.css";
 import ReactDOM from 'react-dom';
 import { Table } from '../lib';
+import './index.css';
+import { faAddressBook } from '@fortawesome/free-solid-svg-icons';
 
 const App = () => {
   const [rowData, setRowData] = useState(null)
 
+  const filterchange = () => {
+    console.log("filter change")
+  }
   const tableOptions = {
     header: {
       name: "Sample Table",
+      icon: faAddressBook,
+      options: {
+        refresh: {
+          style: {
+            color: "#428bca",
+            marginRight: "15px",
+          },
+          onChange: filterchange,
+        },
+        search: true,
+        keyValueFilters: [
+          {
+            style: {},
+            defaultValue: "Last 3 Months",
+            valueObject: {
+              "Last Month": 2628000000,
+              "Last 3 Months": 7884000000,
+              "Last 12 Months": 31536000000,
+              "Last 18 Months": 47304000000,
+              "Beginning of Time": 0,
+            },
+            label: "Uploaded Since",
+            onFilterChange: filterchange,
+          }
+        ]
+
+      }
     },
     colDef: [
       {
         name: "a a",
+        fieldName: "a",
         style: { textAlign: "center" },
         options: {
           sortable: true,
+          searchable: true,
         },
         Cell: row => (
           <span style={{ background: "red" }}>{row["a"]}</span>
         ),
       },
-      { name: "b", fieldName: "b" },
+      {
+        name: "b",
+        fieldName: "b",
+        options: {
+          sortable: true,
+          searchable: true,
+        },
+      },
     ],
     rowData: rowData,
     options: {
