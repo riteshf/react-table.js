@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import { Table } from '../lib';
 import './index.css';
 import { faAddressBook } from '@fortawesome/free-solid-svg-icons';
+import { Button } from 'react-bootstrap';
 
 const App = () => {
   const [rowData, setRowData] = useState(null)
@@ -19,14 +20,17 @@ const App = () => {
         refresh: {
           style: {
             color: "#428bca",
-            marginRight: "15px",
+            marginTop: '5px',
           },
           onChange: filterchange,
         },
         search: true,
         keyValueFilters: [
           {
-            style: {},
+            style: {
+              color: "#428bca",
+              marginTop: '5px',
+            },
             defaultValue: "Last 3 Months",
             valueObject: {
               "Last Month": 2628000000,
@@ -39,8 +43,8 @@ const App = () => {
             onFilterChange: filterchange,
           }
         ]
-
-      }
+      },
+      create: <Button variant='primary' onClick={filterchange}>Create</Button>
     },
     colDef: [
       {

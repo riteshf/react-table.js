@@ -2,10 +2,11 @@ import React from "react";
 import { Row, Col, Form } from "react-bootstrap";
 
 const KeyValueFilter = ({
-    defaultValue,
-    valueObject,
-    label,
+    defaultValue = "",
+    valueObject = {},
+    label = "",
     onFilterChange,
+    style = {}
 }) => {
     const [newValue, updateDefaultValue] = React.useState(defaultValue);
     const changeFilter = (newField) => {
@@ -15,7 +16,7 @@ const KeyValueFilter = ({
 
     return (
         <Form.Group as={Row} controlId={label}>
-            {label && (<Form.Label>{label}:</Form.Label>)}
+            {label && (<Form.Label style={style}>{label}:</Form.Label>)}
             <Col sm={8}>
                 <Form.Control as="select" size="sm"
                     defaultValue={newValue}

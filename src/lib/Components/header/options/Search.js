@@ -10,7 +10,7 @@ const SearchBox = ({ onSearch }) => {
     };
 
     return (
-        <InputGroup size="sm">
+        <InputGroup size="sm" style={{ maxWidth: '140px' }} >
             <FormControl placeholder="Search"
                 value={value}
                 onChange={(e) => onChange(e.target.value)} />

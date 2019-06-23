@@ -7,14 +7,14 @@ const Header = (props) => {
     return (
         <header className="panel-heading" style={headerStyle}>
             <Row>
-                <Col md={{ span: 6 }}>
+                <Col md={{ span: 4 }}>
                     <Card.Title onClick={() => props.showTable()}>
                         {props.header.icon && <FontAwesomeIcon icon={props.header.icon} />}
                         {" "}
                         {props.header.name}
                     </Card.Title>
                 </Col>
-                <Col md={{ span: 6 }}>
+                <Col md={{ span: 8 }}>
                     {props.showOptions && props.header.options && (<Options options={props.header.options} onSearch={props.onSearch} />)}
                 </Col>
             </Row>

@@ -969,7 +969,7 @@ var Header = function Header(props) {
     style: headerStyle
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Row"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Col"], {
     md: {
-      span: 6
+      span: 4
     }
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Card"].Title, {
     onClick: function onClick() {
@@ -979,7 +979,7 @@ var Header = function Header(props) {
     icon: props.header.icon
   }), " ", props.header.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Col"], {
     md: {
-      span: 6
+      span: 8
     }
   }, props.showOptions && props.header.options && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_options__WEBPACK_IMPORTED_MODULE_3__["Options"], {
     options: props.header.options,
@@ -1032,10 +1032,15 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var KeyValueFilter = function KeyValueFilter(_ref) {
-  var defaultValue = _ref.defaultValue,
-      valueObject = _ref.valueObject,
-      label = _ref.label,
-      onFilterChange = _ref.onFilterChange;
+  var _ref$defaultValue = _ref.defaultValue,
+      defaultValue = _ref$defaultValue === void 0 ? "" : _ref$defaultValue,
+      _ref$valueObject = _ref.valueObject,
+      valueObject = _ref$valueObject === void 0 ? {} : _ref$valueObject,
+      _ref$label = _ref.label,
+      label = _ref$label === void 0 ? "" : _ref$label,
+      onFilterChange = _ref.onFilterChange,
+      _ref$style = _ref.style,
+      style = _ref$style === void 0 ? {} : _ref$style;
 
   var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(defaultValue),
       _React$useState2 = _slicedToArray(_React$useState, 2),
@@ -1050,7 +1055,9 @@ var KeyValueFilter = function KeyValueFilter(_ref) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
     as: react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Row"],
     controlId: label
-  }, label && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Label, null, label, ":"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], {
+  }, label && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Label, {
+    style: style
+  }, label, ":"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], {
     sm: 8
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Control, {
     as: "select",
@@ -1103,29 +1110,34 @@ var Options = function Options() {
       _ref$options = _ref.options,
       _ref$options$keyValue = _ref$options.keyValueFilters,
       keyValueFilters = _ref$options$keyValue === void 0 ? [] : _ref$options$keyValue,
-      _ref$options$search = _ref$options.search,
-      search = _ref$options$search === void 0 ? false : _ref$options$search,
+      search = _ref$options.search,
       refresh = _ref$options.refresh,
+      create = _ref$options.create,
       onSearch = _ref.onSearch;
 
+  console.log(create);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], {
-    className: "pull-right"
-  }, keyValueFilters.map(function (kVF, i) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], {
-      key: i
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_KeyValueFilter__WEBPACK_IMPORTED_MODULE_2__["default"], kVF));
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], {
-    md: 4
-  }, search && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Search__WEBPACK_IMPORTED_MODULE_5__["SearchBox"], {
-    onSearch: onSearch
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], {
+    style: {
+      flexDirection: 'row-reverse'
+    }
+  }, refresh && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], {
     md: 1
-  }, refresh && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     onClick: refresh.onChange
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__["FontAwesomeIcon"], {
     icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faSync"],
+    size: "lg",
     style: refresh.style || {}
-  }))));
+  }))), " ", create && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], {
+    md: 2
+  }, create(), " "), search && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Search__WEBPACK_IMPORTED_MODULE_5__["SearchBox"], {
+    onSearch: onSearch
+  }), " ", keyValueFilters.map(function (kVF, i) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], {
+      key: i,
+      md: 5
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_KeyValueFilter__WEBPACK_IMPORTED_MODULE_2__["default"], kVF));
+  }));
 };
 
 
@@ -1171,7 +1183,10 @@ var SearchBox = function SearchBox(_ref) {
   };
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["InputGroup"], {
-    size: "sm"
+    size: "sm",
+    style: {
+      maxWidth: '140px'
+    }
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["FormControl"], {
     placeholder: "Search",
     value: value,
