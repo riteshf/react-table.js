@@ -27,7 +27,7 @@ const Options = ({ options: { keyValueFilters = [], search, refresh, buttons = [
                 </Fragment>
             ))
             }
-            {search && <SearchBox onSearch={onSearch} />}
+            {search && <SearchBox onSearch={onSearch} style={{ marginTop: '5px' }} />}
             {" "}
             {
                 keyValueFilters.map((kVF, i) => (
