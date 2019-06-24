@@ -1056,12 +1056,11 @@ var KeyValueFilter = function KeyValueFilter(_ref) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
     as: react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Row"],
     controlId: label,
-    className: "flex"
-  }, label && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Label, {
-    style: style
-  }, label, ":"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], {
-    sm: 8
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Control, {
+    className: "flex",
+    style: {
+      flexDirection: 'row-reverse'
+    }
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Control, {
     as: "select",
     size: "sm",
     defaultValue: newValue,
@@ -1073,7 +1072,9 @@ var KeyValueFilter = function KeyValueFilter(_ref) {
       key: field,
       value: field
     }, field);
-  }))));
+  }))), label && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Label, {
+    style: style
+  }, label, ":"));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (KeyValueFilter);

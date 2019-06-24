@@ -15,9 +15,8 @@ const KeyValueFilter = ({
     };
 
     return (
-        <Form.Group as={Row} controlId={label} className="flex">
-            {label && (<Form.Label style={style}>{label}:</Form.Label>)}
-            <Col sm={8}>
+        <Form.Group as={Row} controlId={label} className="flex" style={{ flexDirection: 'row-reverse' }}>
+            <Col>
                 <Form.Control as="select" size="sm"
                     defaultValue={newValue}
                     onChange={(e) =>
@@ -30,6 +29,7 @@ const KeyValueFilter = ({
                     ))}
                 </Form.Control>
             </Col>
+            {label && (<Form.Label style={style}>{label}:</Form.Label>)}
         </Form.Group>
     );
 };
