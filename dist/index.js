@@ -1298,7 +1298,7 @@ var Cell = function Cell(_ref) {
       headerOptions = _ref.headerOptions;
 
   var checkAndSetAfterRow = function checkAndSetAfterRow(afterRow) {
-    return afterRow.index === cellIndex && setAfterRow(afterRow);
+    return afterRow && afterRow.index === cellIndex && setAfterRow(afterRow);
   };
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
