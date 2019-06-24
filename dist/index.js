@@ -1599,17 +1599,21 @@ var getDataWithinIndexRange = function getDataWithinIndexRange(from, to, data) {
 };
 
 var numberSort = function numberSort(a, b) {
-  return a - b;
+  return a < b ? -1 : a > b ? 1 : 0;
 };
 
 var stringSort = function stringSort(a, b) {
   return a.toUpperCase() < b.toUpperCase() ? -1 : 1;
 };
 
-var sortData = function sortData(data, fieldName, order) {
-  if (fieldName && data && data.length > 1) {
+var sortData = function sortData() {
+  var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var fieldName = arguments.length > 1 ? arguments[1] : undefined;
+  var order = arguments.length > 2 ? arguments[2] : undefined;
+
+  if (fieldName && data.length > 1) {
     var newData = data.sort(function (a, b) {
-      typeof a[fieldName] === 'number' ? numberSort(a[fieldName], b[fieldName]) : stringSort(a[fieldName], b[fieldName]);
+      return typeof a[fieldName] === 'number' ? numberSort(a[fieldName], b[fieldName]) : stringSort(a[fieldName], b[fieldName]);
     });
     return order === 'ASC' ? newData : newData.reverse();
   } else {
