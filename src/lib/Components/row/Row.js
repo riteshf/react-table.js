@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Cell } from "./Cell";
 
 const Row = (
-    { columns, row, rowIndex, setAfterRow } = { columns: [], row: {}, rowIndex: null }
+    { columns, row, rowIndex, setAfterRow, headerOptions } = { columns: [], row: {}, rowIndex: null, headerOptions: {} }
 ) => {
 
     return (
@@ -12,7 +12,8 @@ const Row = (
                     <Cell
                         cellIndex={rowIndex}
                         setAfterRow={setAfterRow}
-                        cellOptions={column.options}
+                        columnOptions={column.options}
+                        headerOptions={headerOptions}
                         style={column.style || {}}
                         value={column.Cell ? column.Cell(row, key) : row[column.fieldName]}
                     />

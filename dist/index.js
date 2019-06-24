@@ -782,7 +782,8 @@ var Container = function Container(props) {
   }, showTable && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_table__WEBPACK_IMPORTED_MODULE_1__["Table"], {
     colDef: props.colDef,
     rowData: rowData,
-    options: props.options
+    options: props.options,
+    header: props.header
   })));
 };
 
@@ -1288,7 +1289,8 @@ var Cell = function Cell(_ref) {
       _ref$cellIndex = _ref.cellIndex,
       cellIndex = _ref$cellIndex === void 0 ? null : _ref$cellIndex,
       setAfterRow = _ref.setAfterRow,
-      cellOptions = _ref.cellOptions;
+      columnOptions = _ref.columnOptions,
+      headerOptions = _ref.headerOptions;
 
   var checkAndSetAfterRow = function checkAndSetAfterRow(afterRow) {
     return afterRow.index === cellIndex && setAfterRow(afterRow);
@@ -1297,7 +1299,7 @@ var Cell = function Cell(_ref) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
     style: style,
     onClick: function onClick() {
-      return checkAndSetAfterRow(cellOptions.afterRow);
+      return checkAndSetAfterRow(headerOptions.afterRow);
     }
   }, value);
 };
@@ -1326,12 +1328,14 @@ var Row = function Row() {
   var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
     columns: [],
     row: {},
-    rowIndex: null
+    rowIndex: null,
+    headerOptions: {}
   },
       columns = _ref.columns,
       row = _ref.row,
       rowIndex = _ref.rowIndex,
-      setAfterRow = _ref.setAfterRow;
+      setAfterRow = _ref.setAfterRow,
+      headerOptions = _ref.headerOptions;
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, columns.map(function (column, key) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
@@ -1339,7 +1343,8 @@ var Row = function Row() {
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Cell__WEBPACK_IMPORTED_MODULE_1__["Cell"], {
       cellIndex: rowIndex,
       setAfterRow: setAfterRow,
-      cellOptions: column.options,
+      columnOptions: column.options,
+      headerOptions: headerOptions,
       style: column.style || {},
       value: column.Cell ? column.Cell(row, key) : row[column.fieldName]
     }));
@@ -1376,11 +1381,16 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var Rows = function Rows(_ref) {
-  var colDef = _ref.colDef,
-      rowData = _ref.rowData;
+var Rows = function Rows() {
+  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      _ref$colDef = _ref.colDef,
+      colDef = _ref$colDef === void 0 ? [] : _ref$colDef,
+      _ref$rowData = _ref.rowData,
+      rowData = _ref$rowData === void 0 ? [] : _ref$rowData,
+      _ref$headerOptions = _ref.headerOptions,
+      headerOptions = _ref$headerOptions === void 0 ? {} : _ref$headerOptions;
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(headerOptions.afterRow),
       _useState2 = _slicedToArray(_useState, 2),
       afterRow = _useState2[0],
       setAfterRow = _useState2[1];
@@ -1392,7 +1402,8 @@ var Rows = function Rows(_ref) {
       columns: colDef,
       row: row,
       rowIndex: key,
-      setAfterRow: setAfterRow
+      setAfterRow: setAfterRow,
+      headerOptions: headerOptions
     }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AfterRow__WEBPACK_IMPORTED_MODULE_2__["AfterRow"], {
       afterRow: afterRow,
       currentIndex: key,
@@ -1492,7 +1503,7 @@ var Table = function Table(props) {
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     setShowPagination(props.rowData && props.rowData.length >= itemsPerPage);
     changePageWithData(1);
-  }, [sortBy, props.rowData]);
+  }, [sortBy, props.rowData, props.header]);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "table-responsive"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
@@ -1504,7 +1515,7 @@ var Table = function Table(props) {
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_row__WEBPACK_IMPORTED_MODULE_4__["Rows"], {
     colDef: props.colDef,
     rowData: rows || [],
-    options: props.options
+    headerOptions: props.header && props.header.options || {}
   }))), showPagination && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_js_pagination__WEBPACK_IMPORTED_MODULE_1___default.a, {
     activePage: activePage,
     itemsCountPerPage: itemsPerPage,

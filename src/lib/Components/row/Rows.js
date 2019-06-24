@@ -3,14 +3,19 @@ import { Row } from './Row';
 import { AfterRow } from './AfterRow';
 
 
-const Rows = ({ colDef, rowData }) => {
-    const [afterRow, setAfterRow] = useState(null);
+const Rows = ({ colDef = [], rowData = [], headerOptions = {} } = {}) => {
+    const [afterRow, setAfterRow] = useState(headerOptions.afterRow);
 
     return (
         <>
             {rowData.map((row, key) => (
                 <Fragment key={key}>
-                    <Row columns={colDef} row={row} rowIndex={key} setAfterRow={setAfterRow} />
+                    <Row
+                        columns={colDef}
+                        row={row} rowIndex={key} 
+                        setAfterRow={setAfterRow} 
+                        headerOptions={headerOptions}
+                         />
                     <AfterRow
                         afterRow={afterRow}
                         currentIndex={key}

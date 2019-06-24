@@ -33,7 +33,7 @@ const Container = props => {
     <section className="panel panel-default">
       {props.header && <Header header={props.header} showOptions={showTable} showTable={setShowTable} onSearch={setSearchString} />}
       <div className="panel-body">
-        {showTable && <Table colDef={props.colDef} rowData={rowData} options={props.options} />}
+        {showTable && <Table colDef={props.colDef} rowData={rowData} options={props.options} header={props.header} />}
       </div>
     </section>
   );

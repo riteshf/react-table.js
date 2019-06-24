@@ -50,7 +50,11 @@ const App = () => {
             <FontAwesomeIcon icon={faPlus} />
             {" "}
             Create
-          </Button>)
+          </Button>),
+        afterRow: {
+          index: afterRowIndex,
+          Cell: <h1>Hi</h1>,
+        }
       },
     },
     colDef: [
@@ -58,12 +62,7 @@ const App = () => {
         name: "",
         fieldName: "",
         style: { textAlign: "center", width: '10px' },
-        options: {
-          afterRow: {
-            index: afterRowIndex,
-            Cell: <h1>Hi</h1>,
-          },
-        },
+        options: {},
         Cell: (row, index) => (
           <span onClick={() => setAfterRowIndex(afterRowIndex === index ? null : index)}>
             <FontAwesomeIcon

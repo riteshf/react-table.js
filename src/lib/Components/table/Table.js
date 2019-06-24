@@ -30,7 +30,7 @@ const Table = props => {
   useEffect(() => {
     setShowPagination(props.rowData && props.rowData.length >= itemsPerPage);
     changePageWithData(1)
-  }, [sortBy, props.rowData])
+  }, [sortBy, props.rowData, props.header])
 
 
   return (
@@ -40,7 +40,11 @@ const Table = props => {
           <Column colDef={props.colDef} options={props.options} sort={setSortBy} />
         </thead>
         <tbody>
-          <Rows colDef={props.colDef} rowData={rows || []} options={props.options} />
+          <Rows
+            colDef={props.colDef}
+            rowData={rows || []}
+            headerOptions={props.header && props.header.options || {}}
+          />
         </tbody>
       </table>
       {showPagination && (

@@ -2,11 +2,11 @@ import React from 'react';
 
 
 
-const Cell = ({ style = {}, value = "", cellIndex = null, setAfterRow, cellOptions }) => {
+const Cell = ({ style = {}, value = "", cellIndex = null, setAfterRow, columnOptions, headerOptions }) => {
 
     const checkAndSetAfterRow = (afterRow) => (afterRow.index === cellIndex) && setAfterRow(afterRow);
     return (
-        <td style={style} onClick={() => checkAndSetAfterRow(cellOptions.afterRow)}>
+        <td style={style} onClick={() => checkAndSetAfterRow(headerOptions.afterRow)}>
             {value}
         </td>
     )
