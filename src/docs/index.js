@@ -45,12 +45,16 @@ const App = () => {
             onFilterChange: filterchange,
           }
         ],
-        create: (
-          <Button variant='primary' onClick={filterchange}>
-            <FontAwesomeIcon icon={faPlus} />
-            {" "}
-            Create
-          </Button>),
+        buttons: [(
+          <Button variant="primary" onClick={filterchange} style={{ marginLeft: '5px' }}>
+            <FontAwesomeIcon icon={faPlus} /> Create
+          </Button>
+        ), (
+          <Button variant="primary" onClick={filterchange} style={{ marginLeft: '5px' }}>
+            <FontAwesomeIcon icon={faPlus} /> Create
+          </Button>
+        )
+        ],
         afterRow: {
           index: afterRowIndex,
           Cell: <h1>Hi</h1>,

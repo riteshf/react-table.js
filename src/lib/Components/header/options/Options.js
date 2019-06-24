@@ -1,11 +1,11 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Row, Col } from 'react-bootstrap';
 import KeyValueFilter from './KeyValueFilter';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSync } from "@fortawesome/free-solid-svg-icons";
 import { SearchBox } from "./Search";
 
-const Options = ({ options: { keyValueFilters = [], search, refresh, create }, onSearch } = {}) => {
+const Options = ({ options: { keyValueFilters = [], search, refresh, buttons = [] }, onSearch } = {}) => {
     return (
         <Row style={{ flexDirection: 'row-reverse' }} className="flex">
 
@@ -21,15 +21,22 @@ const Options = ({ options: { keyValueFilters = [], search, refresh, create }, o
                     </div>
                 </Col>}
             {" "}
-            {create && <Col md={2}>{create}</Col>}
+            {buttons.map((button, i) => (
+                <Fragment key={i}>
+                    {button}
+                </Fragment>
+            ))
+            }
             {search && <SearchBox onSearch={onSearch} />}
             {" "}
-            {keyValueFilters.map((kVF, i) => (
-                <Col key={i} style={{maxWidth: kVF.style}}>
-                    <KeyValueFilter {...kVF} />
-                </Col>
-            ))}
-        </Row>
+            {
+                keyValueFilters.map((kVF, i) => (
+                    <Col key={i} style={{ maxWidth: kVF.style }}>
+                        <KeyValueFilter {...kVF} />
+                    </Col>
+                ))
+            }
+        </Row >
     );
 };
 

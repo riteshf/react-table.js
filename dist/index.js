@@ -1114,7 +1114,8 @@ var Options = function Options() {
       keyValueFilters = _ref$options$keyValue === void 0 ? [] : _ref$options$keyValue,
       search = _ref$options.search,
       refresh = _ref$options.refresh,
-      create = _ref$options.create,
+      _ref$options$buttons = _ref$options.buttons,
+      buttons = _ref$options$buttons === void 0 ? [] : _ref$options$buttons,
       onSearch = _ref.onSearch;
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], {
@@ -1130,9 +1131,11 @@ var Options = function Options() {
     icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faSync"],
     size: "lg",
     style: refresh.style || {}
-  }))), " ", create && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], {
-    md: 2
-  }, create), search && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Search__WEBPACK_IMPORTED_MODULE_5__["SearchBox"], {
+  }))), " ", buttons.map(function (button, i) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
+      key: i
+    }, button);
+  }), search && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Search__WEBPACK_IMPORTED_MODULE_5__["SearchBox"], {
     onSearch: onSearch
   }), " ", keyValueFilters.map(function (kVF, i) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], {
