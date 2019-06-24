@@ -1039,9 +1039,7 @@ var KeyValueFilter = function KeyValueFilter(_ref) {
       valueObject = _ref$valueObject === void 0 ? {} : _ref$valueObject,
       _ref$label = _ref.label,
       label = _ref$label === void 0 ? "" : _ref$label,
-      onFilterChange = _ref.onFilterChange,
-      _ref$style = _ref.style,
-      style = _ref$style === void 0 ? {} : _ref$style;
+      onFilterChange = _ref.onFilterChange;
 
   var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(defaultValue),
       _React$useState2 = _slicedToArray(_React$useState, 2),
@@ -1072,9 +1070,7 @@ var KeyValueFilter = function KeyValueFilter(_ref) {
       key: field,
       value: field
     }, field);
-  }))), label && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Label, {
-    style: style
-  }, label, ":"));
+  }))), label && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Label, null, label, ":"));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (KeyValueFilter);
@@ -1141,9 +1137,7 @@ var Options = function Options() {
   }), " ", keyValueFilters.map(function (kVF, i) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], {
       key: i,
-      style: {
-        maxWidth: kVF.style
-      }
+      style: kVF.style
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_KeyValueFilter__WEBPACK_IMPORTED_MODULE_2__["default"], kVF));
   }));
 };

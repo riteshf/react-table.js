@@ -31,7 +31,7 @@ const Options = ({ options: { keyValueFilters = [], search, refresh, buttons = [
             {" "}
             {
                 keyValueFilters.map((kVF, i) => (
-                    <Col key={i} style={{ maxWidth: kVF.style }}>
+                    <Col key={i} style={kVF.style}>
                         <KeyValueFilter {...kVF} />
                     </Col>
                 ))

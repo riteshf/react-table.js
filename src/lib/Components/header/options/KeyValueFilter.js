@@ -5,8 +5,7 @@ const KeyValueFilter = ({
     defaultValue = "",
     valueObject = {},
     label = "",
-    onFilterChange,
-    style = {}
+    onFilterChange
 }) => {
     const [newValue, updateDefaultValue] = React.useState(defaultValue);
     const changeFilter = (newField) => {
@@ -29,7 +28,7 @@ const KeyValueFilter = ({
                     ))}
                 </Form.Control>
             </Col>
-            {label && (<Form.Label style={style}>{label}:</Form.Label>)}
+            {label && (<Form.Label>{label}:</Form.Label>)}
         </Form.Group>
     );
 };
