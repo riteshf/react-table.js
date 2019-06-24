@@ -1055,7 +1055,8 @@ var KeyValueFilter = function KeyValueFilter(_ref) {
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
     as: react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Row"],
-    controlId: label
+    controlId: label,
+    className: "flex"
   }, label && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Label, {
     style: style
   }, label, ":"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], {
@@ -1119,7 +1120,8 @@ var Options = function Options() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], {
     style: {
       flexDirection: 'row-reverse'
-    }
+    },
+    className: "flex"
   }, refresh && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], {
     md: 1
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1135,7 +1137,9 @@ var Options = function Options() {
   }), " ", keyValueFilters.map(function (kVF, i) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], {
       key: i,
-      md: 5
+      style: {
+        maxWidth: kVF.style
+      }
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_KeyValueFilter__WEBPACK_IMPORTED_MODULE_2__["default"], kVF));
   }));
 };

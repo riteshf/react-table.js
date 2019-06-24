@@ -15,7 +15,7 @@ const KeyValueFilter = ({
     };
 
     return (
-        <Form.Group as={Row} controlId={label}>
+        <Form.Group as={Row} controlId={label} className="flex">
             {label && (<Form.Label style={style}>{label}:</Form.Label>)}
             <Col sm={8}>
                 <Form.Control as="select" size="sm"

@@ -1,3 +1,7 @@
 .container {
     font-size: small;
 }
+
+.flex {
+    display: flex;
+  }
