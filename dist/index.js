@@ -1133,7 +1133,10 @@ var Options = function Options() {
       key: i
     }, button);
   }), search && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Search__WEBPACK_IMPORTED_MODULE_5__["SearchBox"], {
-    onSearch: onSearch
+    onSearch: onSearch,
+    style: {
+      marginTop: '5px'
+    }
   }), " ", keyValueFilters.map(function (kVF, i) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], {
       key: i,
