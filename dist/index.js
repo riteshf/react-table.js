@@ -86,6 +86,25 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./node_modules/css-loader/index.js!./src/lib/Components/container.css":
+/*!********************************************************************!*\
+  !*** ./node_modules/css-loader!./src/lib/Components/container.css ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".panel {\r\n    margin-bottom: 20px;\r\n    background-color: #fff;\r\n    border: 1px solid transparent;\r\n    border-radius: 4px;\r\n    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);\r\n    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);\r\n}\r\n.panel-default {\r\n    border-color: #ddd;\r\n}\r\n.panel-heading {\r\n    padding: 10px 15px;\r\n    border-bottom: 1px solid transparent;\r\n    border-top-left-radius: 3px;\r\n    border-top-right-radius: 3px;\r\n}\r\n\r\n.panel-default > .panel-heading {\r\n    color: #333;\r\n    background-color: #f5f5f5;\r\n    border-color: #ddd;\r\n}\r\n\r\n.panel-body {\r\n    padding: 15px;\r\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js!./src/lib/Components/table/table.css":
 /*!**********************************************************************!*\
   !*** ./node_modules/css-loader!./src/lib/Components/table/table.css ***!
@@ -98,7 +117,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".panel {\r\n    margin-bottom: 8px;\r\n    background-color: #fff;\r\n    border: 1px solid transparent;\r\n    border-radius: 4px;\r\n    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);\r\n    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);\r\n}\r\n\r\n.panel-default {\r\n    border-color: #ddd;\r\n}\r\n\r\n.panel-default > .panel-heading {\r\n    color: #333;\r\n    background-color: #f5f5f5;\r\n    border-color: #ddd;\r\n}\r\n\r\n.panel-heading {\r\n    padding: 10px 10px;\r\n    border-bottom: 1px solid transparent;\r\n    border-top-left-radius: 3px;\r\n    border-top-right-radius: 3px;\r\n}\r\n\r\n.panel > .table-responsive {\r\n    margin-bottom: 0;\r\n    border: 0;\r\n}\r\n\r\n.panel-body {\r\n    padding: 8px 15px;\r\n}\r\n\r\n.table {\r\n    margin-bottom: 0;\r\n    background-color: transparent;\r\n    border-spacing: 0;\r\n    border-collapse: collapse;\r\n}\r\n\r\n.table th {\r\n    border-top: transparent;\r\n}\r\n\r\n.table th, .table td {\r\n    padding: 0.50rem;\r\n}", ""]);
+exports.push([module.i, ".panel > .table-responsive {\r\n    margin-bottom: 0;\r\n    border: 0;\r\n}\r\n\r\n.table {\r\n    margin-bottom: 0;\r\n    background-color: transparent;\r\n    border-spacing: 0;\r\n    border-collapse: collapse;\r\n}\r\n\r\n.table th {\r\n    border-top: transparent;\r\n}\r\n\r\n.table th, .table td {\r\n    padding: 0.50rem;\r\n}", ""]);
 
 // exports
 
@@ -713,8 +732,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Container", function() { return Container; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _table__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./table */ "./src/lib/Components/table/index.js");
-/* harmony import */ var _header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./header */ "./src/lib/Components/header/index.js");
+/* harmony import */ var _container_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./container.css */ "./src/lib/Components/container.css");
+/* harmony import */ var _container_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_container_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _table__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./table */ "./src/lib/Components/table/index.js");
+/* harmony import */ var _header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./header */ "./src/lib/Components/header/index.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -722,6 +743,7 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -747,16 +769,26 @@ var filterData = function filterData() {
   }) : rows;
 };
 
-var Container = function Container(props) {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.options.defaultShowTable || true),
+var Container = function Container() {
+  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      _ref$header = _ref.header,
+      header = _ref$header === void 0 ? {} : _ref$header,
+      _ref$colDef = _ref.colDef,
+      colDef = _ref$colDef === void 0 ? [] : _ref$colDef,
+      _ref$rowData = _ref.rowData,
+      rowData = _ref$rowData === void 0 ? [] : _ref$rowData,
+      _ref$options = _ref.options,
+      options = _ref$options === void 0 ? {} : _ref$options;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(options.defaultShowTable || true),
       _useState2 = _slicedToArray(_useState, 2),
       showTable = _useState2[0],
       shouldShowTable = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.rowData),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(rowData),
       _useState4 = _slicedToArray(_useState3, 2),
-      rowData = _useState4[0],
-      setRowData = _useState4[1];
+      rows = _useState4[0],
+      setRows = _useState4[1];
 
   var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
       _useState6 = _slicedToArray(_useState5, 2),
@@ -768,22 +800,23 @@ var Container = function Container(props) {
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    setRowData(filterData(searchString, props.colDef, props.rowData));
-  }, [searchString, props.rowData]);
+    setRows(filterData(searchString, colDef, rowData));
+  }, [searchString, rowData]);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
-    className: "panel panel-default"
-  }, props.header && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_header__WEBPACK_IMPORTED_MODULE_2__["Header"], {
-    header: props.header,
+    className: "panel panel-default",
+    style: options.style || {}
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_header__WEBPACK_IMPORTED_MODULE_3__["Header"], {
+    header: header,
     showOptions: showTable,
     showTable: setShowTable,
     onSearch: setSearchString
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "panel-body"
-  }, showTable && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_table__WEBPACK_IMPORTED_MODULE_1__["Table"], {
-    colDef: props.colDef,
-    rowData: rowData,
-    options: props.options,
-    header: props.header
+  }, showTable && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_table__WEBPACK_IMPORTED_MODULE_2__["Table"], {
+    colDef: colDef,
+    rowData: rows,
+    options: options,
+    header: header
   })));
 };
 
@@ -941,6 +974,36 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/lib/Components/container.css":
+/*!******************************************!*\
+  !*** ./src/lib/Components/container.css ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader!./container.css */ "./node_modules/css-loader/index.js!./src/lib/Components/container.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./src/lib/Components/header/Header.js":
 /*!*********************************************!*\
   !*** ./src/lib/Components/header/Header.js ***!
@@ -963,8 +1026,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var Header = function Header(props) {
-  var headerStyle = props.header && props.header.style ? props.header.style : {};
+var Header = function Header() {
+  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      _ref$header = _ref.header,
+      header = _ref$header === void 0 ? {} : _ref$header,
+      showOptions = _ref.showOptions,
+      showTable = _ref.showTable,
+      _ref$onSearch = _ref.onSearch,
+      onSearch = _ref$onSearch === void 0 ? "" : _ref$onSearch;
+
+  var headerStyle = header && header.style ? header.style : {};
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
     className: "panel-heading",
     style: headerStyle
@@ -974,17 +1045,17 @@ var Header = function Header(props) {
     }
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Card"].Title, {
     onClick: function onClick() {
-      return props.showTable();
+      return showTable();
     }
-  }, props.header.icon && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__["FontAwesomeIcon"], {
-    icon: props.header.icon
-  }), " ", props.header.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Col"], {
+  }, header.icon && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__["FontAwesomeIcon"], {
+    icon: header.icon
+  }), " ", header.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Col"], {
     md: {
       span: 8
     }
-  }, props.showOptions && props.header.options && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_options__WEBPACK_IMPORTED_MODULE_3__["Options"], {
-    options: props.header.options,
-    onSearch: props.onSearch
+  }, showOptions && header.options && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_options__WEBPACK_IMPORTED_MODULE_3__["Options"], {
+    options: header.options,
+    onSearch: onSearch
   }))));
 };
 
