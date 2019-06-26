@@ -749,6 +749,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+var hasKeys = function hasKeys(o) {
+  return Object.keys(o).length > 0;
+};
+
 var getSearchableFieldNames = function getSearchableFieldNames(columns) {
   return columns.filter(function (column) {
     return column.options && column.options.searchable;
@@ -805,12 +809,12 @@ var Container = function Container() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
     className: "panel panel-default",
     style: options.style || {}
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_header__WEBPACK_IMPORTED_MODULE_3__["Header"], {
+  }, hasKeys(header) ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_header__WEBPACK_IMPORTED_MODULE_3__["Header"], {
     header: header,
     showOptions: showTable,
     showTable: setShowTable,
     onSearch: setSearchString
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }) : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "panel-body"
   }, showTable && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_table__WEBPACK_IMPORTED_MODULE_2__["Table"], {
     colDef: colDef,
