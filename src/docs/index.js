@@ -46,11 +46,11 @@ const App = () => {
           }
         ],
         buttons: [(
-          <Button variant="primary" onClick={filterchange} style={{ marginLeft: '5px' }}>
+          <Button variant="primary" onClick={filterchange} style={{ marginLeft: "10px", maxHeight: "36px", marginTop: "5px" }}>
             <FontAwesomeIcon icon={faPlus} /> Create
           </Button>
         ), (
-          <Button variant="primary" onClick={filterchange} style={{ marginLeft: '5px' }}>
+          <Button variant="primary" onClick={filterchange} style={{ marginLeft: "10px", maxHeight: "36px", marginTop: "5px" }}>
             <FontAwesomeIcon icon={faPlus} /> Create
           </Button>
         )
@@ -97,6 +97,7 @@ const App = () => {
     ],
     rowData: rowData,
     options: {
+      style: { marginTop: "10px" },
       sortingOrder: "ASC",
       itemsPerPage: 5,
       defaultShowTable: true,
@@ -124,7 +125,7 @@ const App = () => {
     }, 3000)
   }, [])
   return (
-    <div className="container" style={{ marginTop: '30px' }}>
+    <div className="container">
       <Table {...tableOptions} />
     </div>
   )

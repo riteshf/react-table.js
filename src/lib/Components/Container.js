@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+
+import './container.css';
 import { Table } from './table';
 import { Header } from './header';
 
@@ -19,21 +21,21 @@ const filterData = (searchString = '', columns = [], rows = []) => {
     ) : rows;
 }
 
-const Container = props => {
-  const [showTable, shouldShowTable] = useState(props.options.defaultShowTable || true);
-  const [rowData, setRowData] = useState(props.rowData);
+const Container = ({ header = {}, colDef = [], rowData = [], options = {} } = {}) => {
+  const [showTable, shouldShowTable] = useState(options.defaultShowTable || true);
+  const [rows, setRows] = useState(rowData);
   const [searchString, setSearchString] = useState('');
   const setShowTable = () => shouldShowTable(!showTable)
 
   useEffect(() => {
-    setRowData(filterData(searchString, props.colDef, props.rowData))
-  }, [searchString, props.rowData])
+    setRows(filterData(searchString, colDef, rowData))
+  }, [searchString, rowData])
 
   return (
-    <section className="panel panel-default">
-      {props.header && <Header header={props.header} showOptions={showTable} showTable={setShowTable} onSearch={setSearchString} />}
+    <section className="panel panel-default" style={options.style || {}}>
+      <Header header={header} showOptions={showTable} showTable={setShowTable} onSearch={setSearchString} />
       <div className="panel-body">
-        {showTable && <Table colDef={props.colDef} rowData={rowData} options={props.options} header={props.header} />}
+        {showTable && <Table colDef={colDef} rowData={rows} options={options} header={header} />}
       </div>
     </section>
   );
