@@ -5,6 +5,7 @@ import { Table } from './table';
 import { Header } from './header';
 
 
+const hasKeys = o => Object.keys(o).length > 0
 
 const getSearchableFieldNames = (columns) => columns
   .filter(column => column.options && column.options.searchable)
@@ -33,7 +34,7 @@ const Container = ({ header = {}, colDef = [], rowData = [], options = {} } = {}
 
   return (
     <section className="panel panel-default" style={options.style || {}}>
-      <Header header={header} showOptions={showTable} showTable={setShowTable} onSearch={setSearchString} />
+      {hasKeys(header) ? <Header header={header} showOptions={showTable} showTable={setShowTable} onSearch={setSearchString} /> : null}
       <div className="panel-body">
         {showTable && <Table colDef={colDef} rowData={rows} options={options} header={header} />}
       </div>
