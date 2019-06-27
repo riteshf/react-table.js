@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import ReactDOM from 'react-dom';
 import { Table } from '../lib';
 import './index.css';
-import { faAddressBook, faPlus, faMinusSquare, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
+import { faAddressBook, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { AfterRow } from '../lib/Components';
