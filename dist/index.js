@@ -743,14 +743,23 @@ function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = 
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
+
 
 
 
 
 var AfterRow = function AfterRow(_ref) {
-  var keyIndex = _ref.keyIndex,
-      afterRowIndex = _ref.afterRowIndex,
-      setAfterRowIndex = _ref.setAfterRowIndex;
+  _objectDestructuringEmpty(_ref.row);
+
+  var _ref$keyIndex = _ref.keyIndex,
+      keyIndex = _ref$keyIndex === void 0 ? 0 : _ref$keyIndex,
+      _ref$afterRowIndex = _ref.afterRowIndex,
+      afterRowIndex = _ref$afterRowIndex === void 0 ? null : _ref$afterRowIndex,
+      _ref$setAfterRowIndex = _ref.setAfterRowIndex,
+      setAfterRowIndex = _ref$setAfterRowIndex === void 0 ? Function : _ref$setAfterRowIndex,
+      _ref$setRowData = _ref.setRowData,
+      setRowData = _ref$setRowData === void 0 ? Function : _ref$setRowData;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faPlusSquare"]),
       _useState2 = _slicedToArray(_useState, 2),
@@ -769,6 +778,7 @@ var AfterRow = function AfterRow(_ref) {
     } else {
       setAfterRowIndex(keyIndex);
       setFont(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faPlusSquare"]);
+      setRowData && setRowData(row);
     }
   };
 

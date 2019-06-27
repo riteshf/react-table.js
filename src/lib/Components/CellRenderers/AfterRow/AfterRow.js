@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinusSquare, faPlusSquare } from "@fortawesome/free-solid-svg-icons";
 
-const AfterRow = ({ keyIndex, afterRowIndex, setAfterRowIndex }) => {
+const AfterRow = ({ row: {}, keyIndex = 0, afterRowIndex = null, setAfterRowIndex = Function, setRowData = Function }) => {
     
     const [font, setFont] = useState(faPlusSquare);
     
@@ -16,6 +16,7 @@ const AfterRow = ({ keyIndex, afterRowIndex, setAfterRowIndex }) => {
         } else {
             setAfterRowIndex(keyIndex);
             setFont(faPlusSquare);
+            setRowData && setRowData(row);
         }
     }
 
