@@ -102,7 +102,6 @@ const App = () => {
 
       defaultShowTable: true,
       paginationOptions: {
-        type: "custom",
         itemsPerPage: 5,
         pageRangeDisplayed: 1,
         getNext: (currentDataArray) => {
