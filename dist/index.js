@@ -743,16 +743,14 @@ function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = 
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
-
 
 
 
 
 var AfterRow = function AfterRow(_ref) {
-  _objectDestructuringEmpty(_ref.row);
-
-  var _ref$keyIndex = _ref.keyIndex,
+  var _ref$row = _ref.row,
+      row = _ref$row === void 0 ? {} : _ref$row,
+      _ref$keyIndex = _ref.keyIndex,
       keyIndex = _ref$keyIndex === void 0 ? 0 : _ref$keyIndex,
       _ref$afterRowIndex = _ref.afterRowIndex,
       afterRowIndex = _ref$afterRowIndex === void 0 ? null : _ref$afterRowIndex,

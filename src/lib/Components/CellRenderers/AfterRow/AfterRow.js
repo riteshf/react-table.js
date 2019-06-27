@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinusSquare, faPlusSquare } from "@fortawesome/free-solid-svg-icons";
 
-const AfterRow = ({ row: {}, keyIndex = 0, afterRowIndex = null, setAfterRowIndex = Function, setRowData = Function }) => {
-    
+const AfterRow = ({ row = {}, keyIndex = 0, afterRowIndex = null, setAfterRowIndex = Function, setRowData = Function }) => {
+
     const [font, setFont] = useState(faPlusSquare);
-    
+
     const getNewFont = (currentFont) => currentFont === faPlusSquare ? faMinusSquare : faPlusSquare;
-    
+
     const getFont = (afterRowIndex) => {
         if (afterRowIndex >= 0 && afterRowIndex === keyIndex) {
             // console.log(afterRowIndex, keyIndex)
