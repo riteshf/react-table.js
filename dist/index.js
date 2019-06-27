@@ -755,9 +755,9 @@ var AfterRow = function AfterRow(_ref) {
       _ref$afterRowIndex = _ref.afterRowIndex,
       afterRowIndex = _ref$afterRowIndex === void 0 ? null : _ref$afterRowIndex,
       _ref$setAfterRowIndex = _ref.setAfterRowIndex,
-      setAfterRowIndex = _ref$setAfterRowIndex === void 0 ? Function : _ref$setAfterRowIndex,
+      setAfterRowIndex = _ref$setAfterRowIndex === void 0 ? function () {} : _ref$setAfterRowIndex,
       _ref$setRowData = _ref.setRowData,
-      setRowData = _ref$setRowData === void 0 ? Function : _ref$setRowData;
+      setRowData = _ref$setRowData === void 0 ? function () {} : _ref$setRowData;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faPlusSquare"]),
       _useState2 = _slicedToArray(_useState, 2),
@@ -769,18 +769,18 @@ var AfterRow = function AfterRow(_ref) {
   };
 
   var getFont = function getFont(afterRowIndex) {
-    if (afterRowIndex >= 0 && afterRowIndex === keyIndex) {
-      // console.log(afterRowIndex, keyIndex)
+    if (Number.isInteger(afterRowIndex) && afterRowIndex === keyIndex) {
       setFont(getNewFont(font));
       setAfterRowIndex(null);
     } else {
       setAfterRowIndex(keyIndex);
-      setFont(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faPlusSquare"]);
-      setRowData && setRowData(row);
+      setFont(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faMinusSquare"]);
+      setRowData(row);
     }
   };
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    key: keyIndex,
     onClick: function onClick() {
       return getFont(afterRowIndex);
     }
