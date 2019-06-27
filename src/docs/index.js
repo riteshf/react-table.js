@@ -99,8 +99,51 @@ const App = () => {
     options: {
       style: { marginTop: "10px" },
       sortingOrder: "ASC",
-      itemsPerPage: 5,
+
       defaultShowTable: true,
+      paginationOptions: {
+        type: "custom",
+        itemsPerPage: 5,
+        pageRangeDisplayed: 1,
+        getNext: (currentDataArray) => {
+          return {
+            nextPage: true,
+            data: [
+              { a: "zzz", b: 999 },
+              { a: "zzz", b: 999 },
+              { a: "zzz", b: 999 },
+              { a: "zzz", b: 999 },
+              { a: "zzz", b: 999 },
+              { a: "zzz", b: 999 },
+              { a: "zzz", b: 999 },
+              { a: "zzz", b: 999 },
+              { a: "zzz", b: 999 },
+              { a: "zzz", b: 999 },
+              { a: "zzz", b: 999 },
+              { a: "zzz", b: 999 }
+            ]
+          }
+        },
+        getPrevious: (currentDataArray) => {
+          return {
+            previousPage: true,
+            data: [
+              { a: "ccc", b: 123 },
+              { a: "ccc", b: 123 },
+              { a: "ccc", b: 123 },
+              { a: "ccc", b: 123 },
+              { a: "ccc", b: 123 },
+              { a: "ccc", b: 123 },
+              { a: "ccc", b: 123 },
+              { a: "ccc", b: 123 },
+              { a: "ccc", b: 123 },
+              { a: "ccc", b: 123 },
+              { a: "ccc", b: 123 },
+              { a: "ccc", b: 123 }
+            ]
+          }
+        },
+      }
     },
   };
   useEffect(() => {

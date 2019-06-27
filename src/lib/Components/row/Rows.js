@@ -3,7 +3,7 @@ import { RowAfterRowCombo } from './RowAfterRowCombo';
 
 
 
-const Rows = ({ colDef = [], rowData = [], headerOptions = {} } = {}) => {
+const Rows = ({ colDef = [], rowData = [], headerOptions = { afterRow: { index: null, Cell: null } } } = {}) => {
     const [afterRowIndex, setAfterRowIndex] = useState(headerOptions.afterRow ? headerOptions.afterRow.index : null);
 
     useEffect(() => {

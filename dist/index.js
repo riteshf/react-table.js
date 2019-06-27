@@ -966,17 +966,17 @@ var Container = function Container() {
     className: "panel panel-default",
     style: options.style || {}
   }, hasKeys(header) ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_header__WEBPACK_IMPORTED_MODULE_3__["Header"], {
-    header: header,
+    header: header || {},
     showOptions: showTable,
     showTable: setShowTable,
     onSearch: setSearchString
   }) : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "panel-body"
   }, showTable && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_table__WEBPACK_IMPORTED_MODULE_2__["Table"], {
-    colDef: colDef,
-    rowData: rows,
-    options: options,
-    header: header
+    colDef: colDef || [],
+    rowData: rows || [],
+    options: options || {},
+    header: header || {}
   })));
 };
 
@@ -1599,7 +1599,7 @@ var RowAfterRowCombo = function RowAfterRowCombo(_ref) {
       _ref$rowIndex = _ref.rowIndex,
       rowIndex = _ref$rowIndex === void 0 ? 0 : _ref$rowIndex,
       _ref$afterRowCell = _ref.afterRowCell,
-      afterRowCell = _ref$afterRowCell === void 0 ? Function : _ref$afterRowCell,
+      afterRowCell = _ref$afterRowCell === void 0 ? function () {} : _ref$afterRowCell,
       _ref$afterRowIndex = _ref.afterRowIndex,
       afterRowIndex = _ref$afterRowIndex === void 0 ? null : _ref$afterRowIndex;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Row__WEBPACK_IMPORTED_MODULE_1__["Row"], {
@@ -1647,7 +1647,12 @@ var Rows = function Rows() {
       _ref$rowData = _ref.rowData,
       rowData = _ref$rowData === void 0 ? [] : _ref$rowData,
       _ref$headerOptions = _ref.headerOptions,
-      headerOptions = _ref$headerOptions === void 0 ? {} : _ref$headerOptions;
+      headerOptions = _ref$headerOptions === void 0 ? {
+    afterRow: {
+      index: null,
+      Cell: null
+    }
+  } : _ref$headerOptions;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(headerOptions.afterRow ? headerOptions.afterRow.index : null),
       _useState2 = _slicedToArray(_useState, 2),
@@ -1724,8 +1729,18 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var Table = function Table(props) {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0),
+var Table = function Table() {
+  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      _ref$header = _ref.header,
+      header = _ref$header === void 0 ? {} : _ref$header,
+      _ref$options = _ref.options,
+      options = _ref$options === void 0 ? {} : _ref$options,
+      _ref$colDef = _ref.colDef,
+      colDef = _ref$colDef === void 0 ? [] : _ref$colDef,
+      _ref$rowData = _ref.rowData,
+      rowData = _ref$rowData === void 0 ? [] : _ref$rowData;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(1),
       _useState2 = _slicedToArray(_useState, 2),
       activePage = _useState2[0],
       setActivePage = _useState2[1];
@@ -1741,47 +1756,76 @@ var Table = function Table(props) {
       setRows = _useState6[1];
 
   var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
-    sortBy: props.options.sortBy,
-    sortingOrder: props.options.sortingOrder || "ASC"
+    sortBy: options.sortBy,
+    sortingOrder: options.sortingOrder || "ASC"
   }),
       _useState8 = _slicedToArray(_useState7, 2),
       sortBy = _useState8[0],
       setSortBy = _useState8[1];
 
-  var itemsPerPage = props.options.itemsPerPage || 10;
+  var pageOptions = options.paginationOptions || {};
+
+  var getNext = function getNext(rowData, pageId) {
+    return {
+      nextPage: true,
+      data: Object(_Utils_rows__WEBPACK_IMPORTED_MODULE_3__["getDataWithinIndexRange"])((pageId - 1) * paginationOptions.itemsPerPage, pageId * paginationOptions.itemsPerPage, rowData)
+    };
+  };
+
+  var getPrevious = function getPrevious(rowData, pageId) {
+    return {
+      nextPage: true,
+      data: Object(_Utils_rows__WEBPACK_IMPORTED_MODULE_3__["getDataWithinIndexRange"])((pageId - 1) * paginationOptions.itemsPerPage, pageId * paginationOptions.itemsPerPage, rowData)
+    };
+  };
+
+  var paginationOptions = {
+    itemsPerPage: pageOptions.itemsPerPage || 10,
+    pageRangeDisplayed: pageOptions.pageRangeDisplayed || 4,
+    getNext: pageOptions.getNext || getNext,
+    getPrevious: pageOptions.getPrevious || getPrevious
+  };
 
   var changePageWithData = function changePageWithData(pageId) {
-    var sortedData = Object(_Utils_rows__WEBPACK_IMPORTED_MODULE_3__["getSortedData"])(props.colDef, props.rowData, sortBy);
-    var newRows = Object(_Utils_rows__WEBPACK_IMPORTED_MODULE_3__["getDataWithinIndexRange"])((pageId - 1) * itemsPerPage, pageId * itemsPerPage, sortedData);
-    setRows(newRows);
+    var sortedData = Object(_Utils_rows__WEBPACK_IMPORTED_MODULE_3__["getSortedData"])(colDef, rowData, sortBy);
+    var nextDataToShow = {};
+
+    if (activePage === pageId) {
+      nextDataToShow = {
+        nextPage: false,
+        data: Object(_Utils_rows__WEBPACK_IMPORTED_MODULE_3__["getDataWithinIndexRange"])((pageId - 1) * paginationOptions.itemsPerPage, pageId * paginationOptions.itemsPerPage, rowData)
+      };
+    } else if (activePage < pageId) {
+      nextDataToShow = paginationOptions.getNext(sortedData, pageId);
+    } else if (activePage > pageId) {
+      nextDataToShow = paginationOptions.getPrevious(sortedData, pageId);
+    }
+
+    setRows(nextDataToShow.data.slice(0, pageOptions.itemsPerPage));
     setActivePage(pageId);
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    setShowPagination(props.rowData && props.rowData.length >= itemsPerPage);
+    setShowPagination(rowData.length > paginationOptions.itemsPerPage);
     changePageWithData(1);
-  }, [sortBy, props.rowData, props.header]);
+  }, [sortBy, rowData, header]);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "table-responsive"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
     className: "table table-hover"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_column__WEBPACK_IMPORTED_MODULE_5__["Column"], {
-    colDef: props.colDef,
-    options: props.options,
+    colDef: colDef,
+    options: options,
     sort: setSortBy
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_row__WEBPACK_IMPORTED_MODULE_4__["Rows"], {
-    colDef: props.colDef,
-    rowData: rows || [],
-    headerOptions: props.header && props.header.options || {
-      afterRow: {
-        index: null,
-        Cell: null
-      }
-    }
+    colDef: colDef,
+    rowData: rows,
+    headerOptions: header.options
   }))), showPagination && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_js_pagination__WEBPACK_IMPORTED_MODULE_1___default.a, {
     activePage: activePage,
-    itemsCountPerPage: itemsPerPage,
-    totalItemsCount: props.rowData ? props.rowData.length : 0,
+    itemsCountPerPage: paginationOptions.itemsPerPage,
+    pageRangeDisplayed: paginationOptions.pageRangeDisplayed,
+    totalItemsCount: rowData.length,
     onChange: changePageWithData,
     itemClass: "page-item",
     linkClass: "page-link"

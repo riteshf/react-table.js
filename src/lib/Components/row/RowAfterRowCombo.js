@@ -2,7 +2,7 @@ import React from 'react';
 import { Row } from './Row';
 import { AfterRow } from './AfterRow';
 
-const RowAfterRowCombo = ({ colDef = [], row = [], rowIndex = 0, afterRowCell = Function, afterRowIndex = null }) => {
+const RowAfterRowCombo = ({ colDef = [], row = [], rowIndex = 0, afterRowCell = () => { }, afterRowIndex = null }) => {
 
     return (
         <>

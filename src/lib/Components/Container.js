@@ -34,9 +34,20 @@ const Container = ({ header = {}, colDef = [], rowData = [], options = {} } = {}
 
   return (
     <section className="panel panel-default" style={options.style || {}}>
-      {hasKeys(header) ? <Header header={header} showOptions={showTable} showTable={setShowTable} onSearch={setSearchString} /> : null}
+      {hasKeys(header) ? <Header
+        header={header || {}}
+        showOptions={showTable}
+        showTable={setShowTable}
+        onSearch={setSearchString}
+      /> : null}
       <div className="panel-body">
-        {showTable && <Table colDef={colDef} rowData={rows} options={options} header={header} />}
+        {showTable && <Table
+          colDef={colDef || []}
+          rowData={rows || []}
+          options={options || {}}
+          header={header || {}}
+        />
+        }
       </div>
     </section>
   );
