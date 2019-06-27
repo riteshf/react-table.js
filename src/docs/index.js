@@ -6,6 +6,7 @@ import './index.css';
 import { faAddressBook, faPlus, faMinusSquare, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { AfterRow } from '../lib/Components';
 
 const App = () => {
   const [rowData, setRowData] = useState(null)
@@ -68,10 +69,10 @@ const App = () => {
         style: { textAlign: "center", width: '10px' },
         options: {},
         Cell: (row, index) => (
-          <span onClick={() => setAfterRowIndex(afterRowIndex === index ? null : index)}>
-            <FontAwesomeIcon
-              icon={afterRowIndex ? faMinusSquare : faPlusSquare} />
-          </span>
+          <>
+            {/* {console.log(index)} */}
+            <AfterRow keyIndex={index} afterRowIndex={afterRowIndex} setAfterRowIndex={setAfterRowIndex} />
+          </>
         ),
       },
       {

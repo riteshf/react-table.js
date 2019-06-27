@@ -43,7 +43,7 @@ const Table = props => {
           <Rows
             colDef={props.colDef}
             rowData={rows || []}
-            headerOptions={props.header && props.header.options || {}}
+            headerOptions={props.header && props.header.options || { afterRow : {index: null, Cell : null}}}
           />
         </tbody>
       </table>

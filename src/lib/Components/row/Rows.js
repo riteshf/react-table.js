@@ -1,27 +1,24 @@
-import React, { useState, Fragment } from 'react';
-import { Row } from './Row';
-import { AfterRow } from './AfterRow';
+import React, { useState, useEffect, Fragment } from 'react';
+import { RowAfterRowCombo } from './RowAfterRowCombo';
+
 
 
 const Rows = ({ colDef = [], rowData = [], headerOptions = {} } = {}) => {
-    const [afterRow, setAfterRow] = useState(headerOptions.afterRow);
+    const [afterRowIndex, setAfterRowIndex] = useState(headerOptions.afterRow ? headerOptions.afterRow.index : null);
 
+    useEffect(() => {
+        setAfterRowIndex(headerOptions.afterRow ? headerOptions.afterRow.index : null)
+    }, [headerOptions.afterRow])
     return (
         <>
             {rowData.map((row, key) => (
                 <Fragment key={key}>
-                    <Row
-                        columns={colDef}
-                        row={row} rowIndex={key} 
-                        setAfterRow={setAfterRow} 
-                        headerOptions={headerOptions}
-                         />
-                    <AfterRow
-                        afterRow={afterRow}
-                        currentIndex={key}
-                        colSpan={colDef.length}
+                    <RowAfterRowCombo
+                        colDef={colDef}
                         row={row}
-                    />
+                        rowIndex={key}
+                        afterRowCell={headerOptions.afterRow ? headerOptions.afterRow.Cell : null}
+                        afterRowIndex={afterRowIndex} />
                 </Fragment>
             ))}
         </>
