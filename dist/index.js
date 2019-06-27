@@ -1894,13 +1894,15 @@ var getSortedData = function getSortedData(colDef, rowData, sortBy) {
 /*!**************************!*\
   !*** ./src/lib/index.js ***!
   \**************************/
-/*! exports provided: Table */
+/*! exports provided: Table, AfterRow */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Components */ "./src/lib/Components/index.js");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Table", function() { return _Components__WEBPACK_IMPORTED_MODULE_0__["Table"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "AfterRow", function() { return _Components__WEBPACK_IMPORTED_MODULE_0__["AfterRow"]; });
 
 
 
