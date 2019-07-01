@@ -1,4 +1,4 @@
 export { Container as Table } from './Container';
 
 
-export { AfterRow, Date } from "./CellRenderers";
+export { AfterRow, Date, SimpleProgressBar } from "./CellRenderers";

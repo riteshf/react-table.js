@@ -1,1 +1,1 @@
-export { Table, AfterRow } from './Components';
+export { Table, AfterRow, Date, SimpleProgressBar } from './Components';

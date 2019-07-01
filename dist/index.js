@@ -856,11 +856,64 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/lib/Components/CellRenderers/ProgressBar/SimpleProgressBar.js":
+/*!***************************************************************************!*\
+  !*** ./src/lib/Components/CellRenderers/ProgressBar/SimpleProgressBar.js ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "react-bootstrap");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__);
+
+
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      _ref$bars = _ref.bars,
+      bars = _ref$bars === void 0 ? [] : _ref$bars;
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["ProgressBar"], null, bars.map(function (_ref2, index) {
+    var _ref2$variant = _ref2.variant,
+        variant = _ref2$variant === void 0 ? "" : _ref2$variant,
+        _ref2$now = _ref2.now,
+        now = _ref2$now === void 0 ? Number : _ref2$now;
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["ProgressBar"], {
+      key: index,
+      striped: true,
+      variant: variant,
+      now: now
+    });
+  }));
+});
+
+/***/ }),
+
+/***/ "./src/lib/Components/CellRenderers/ProgressBar/index.js":
+/*!***************************************************************!*\
+  !*** ./src/lib/Components/CellRenderers/ProgressBar/index.js ***!
+  \***************************************************************/
+/*! exports provided: SimpleProgressBar */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _SimpleProgressBar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SimpleProgressBar */ "./src/lib/Components/CellRenderers/ProgressBar/SimpleProgressBar.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SimpleProgressBar", function() { return _SimpleProgressBar__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
+
+
+/***/ }),
+
 /***/ "./src/lib/Components/CellRenderers/index.js":
 /*!***************************************************!*\
   !*** ./src/lib/Components/CellRenderers/index.js ***!
   \***************************************************/
-/*! exports provided: AfterRow, Date */
+/*! exports provided: AfterRow, Date, SimpleProgressBar */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -870,6 +923,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony import */ var _Date__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Date */ "./src/lib/Components/CellRenderers/Date/index.js");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Date", function() { return _Date__WEBPACK_IMPORTED_MODULE_1__["Date"]; });
+
+/* harmony import */ var _ProgressBar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ProgressBar */ "./src/lib/Components/CellRenderers/ProgressBar/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SimpleProgressBar", function() { return _ProgressBar__WEBPACK_IMPORTED_MODULE_2__["SimpleProgressBar"]; });
+
 
 
 
@@ -1456,7 +1513,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!*************************************!*\
   !*** ./src/lib/Components/index.js ***!
   \*************************************/
-/*! exports provided: Table, AfterRow, Date */
+/*! exports provided: Table, AfterRow, Date, SimpleProgressBar */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1468,6 +1525,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "AfterRow", function() { return _CellRenderers__WEBPACK_IMPORTED_MODULE_1__["AfterRow"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Date", function() { return _CellRenderers__WEBPACK_IMPORTED_MODULE_1__["Date"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SimpleProgressBar", function() { return _CellRenderers__WEBPACK_IMPORTED_MODULE_1__["SimpleProgressBar"]; });
 
 
 
@@ -1946,7 +2005,7 @@ var getSortedData = function getSortedData(colDef, rowData, sortBy) {
 /*!**************************!*\
   !*** ./src/lib/index.js ***!
   \**************************/
-/*! exports provided: Table, AfterRow */
+/*! exports provided: Table, AfterRow, Date, SimpleProgressBar */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1955,6 +2014,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Table", function() { return _Components__WEBPACK_IMPORTED_MODULE_0__["Table"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "AfterRow", function() { return _Components__WEBPACK_IMPORTED_MODULE_0__["AfterRow"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Date", function() { return _Components__WEBPACK_IMPORTED_MODULE_0__["Date"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SimpleProgressBar", function() { return _Components__WEBPACK_IMPORTED_MODULE_0__["SimpleProgressBar"]; });
 
 
 
