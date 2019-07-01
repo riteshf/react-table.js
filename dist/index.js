@@ -880,12 +880,15 @@ __webpack_require__.r(__webpack_exports__);
     var _ref2$variant = _ref2.variant,
         variant = _ref2$variant === void 0 ? "" : _ref2$variant,
         _ref2$now = _ref2.now,
-        now = _ref2$now === void 0 ? Number : _ref2$now;
+        now = _ref2$now === void 0 ? Number : _ref2$now,
+        label = _ref2.label;
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["ProgressBar"], {
       key: index,
       striped: true,
+      animated: true,
       variant: variant,
-      now: now
+      now: now,
+      lable: label
     });
   }));
 });
