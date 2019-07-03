@@ -1000,7 +1000,7 @@ var Container = function Container() {
       _ref$options = _ref.options,
       options = _ref$options === void 0 ? {} : _ref$options;
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(options.defaultShowTable || true),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(options.defaultShowTable),
       _useState2 = _slicedToArray(_useState, 2),
       showTable = _useState2[0],
       shouldShowTable = _useState2[1];
@@ -1030,14 +1030,14 @@ var Container = function Container() {
     showOptions: showTable,
     showTable: setShowTable,
     onSearch: setSearchString
-  }) : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }) : null, showTable && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "panel-body"
-  }, showTable && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_table__WEBPACK_IMPORTED_MODULE_2__["Table"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, options.beforeTable ? options.beforeTable : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_table__WEBPACK_IMPORTED_MODULE_2__["Table"], {
     colDef: colDef || [],
     rowData: rows || [],
     options: options || {},
     header: header || {}
-  })));
+  }))));
 };
 
 
@@ -1324,12 +1324,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var KeyValueFilter = function KeyValueFilter(_ref) {
-  var _ref$defaultValue = _ref.defaultValue,
-      defaultValue = _ref$defaultValue === void 0 ? "" : _ref$defaultValue,
-      _ref$valueObject = _ref.valueObject,
-      valueObject = _ref$valueObject === void 0 ? {} : _ref$valueObject,
-      _ref$label = _ref.label,
-      label = _ref$label === void 0 ? "" : _ref$label,
+  var defaultValue = _ref.defaultValue,
+      valueObject = _ref.valueObject,
+      label = _ref.label,
       onFilterChange = _ref.onFilterChange;
 
   var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(defaultValue),
@@ -1339,19 +1336,25 @@ var KeyValueFilter = function KeyValueFilter(_ref) {
 
   var changeFilter = function changeFilter(newField) {
     updateDefaultValue(newField);
-    onFilterChange(newField, valueObject[newField]);
+    onFilterChange(newField);
   };
 
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
-    as: react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Row"],
-    controlId: label,
-    className: "flex",
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], null, label && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     style: {
-      flexDirection: 'row-reverse'
+      height: "24px",
+      fontSize: "12px",
+      padding: "3px"
     }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Control, {
-    as: "select",
-    size: "sm",
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    style: {
+      color: "#428bca"
+    }
+  }, label, ":"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+    style: {
+      height: "24px",
+      fontSize: "12px",
+      padding: "3px"
+    },
     defaultValue: newValue,
     onChange: function onChange(e) {
       return changeFilter(e.target.value);
@@ -1361,7 +1364,7 @@ var KeyValueFilter = function KeyValueFilter(_ref) {
       key: field,
       value: field
     }, field);
-  }))), label && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Label, null, label, ":"));
+  })))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (KeyValueFilter);

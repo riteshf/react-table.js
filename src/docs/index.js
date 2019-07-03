@@ -99,7 +99,7 @@ const App = () => {
     options: {
       style: { marginTop: "10px" },
       sortingOrder: "ASC",
-
+      beforeTable: <h1>Before Table</h1>,
       defaultShowTable: true,
       paginationOptions: {
         itemsPerPage: 5,

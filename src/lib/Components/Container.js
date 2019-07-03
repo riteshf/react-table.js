@@ -23,7 +23,7 @@ const filterData = (searchString = '', columns = [], rows = []) => {
 }
 
 const Container = ({ header = {}, colDef = [], rowData = [], options = {} } = {}) => {
-  const [showTable, shouldShowTable] = useState(options.defaultShowTable || true);
+  const [showTable, shouldShowTable] = useState(options.defaultShowTable);
   const [rows, setRows] = useState(rowData);
   const [searchString, setSearchString] = useState('');
   const setShowTable = () => shouldShowTable(!showTable)
@@ -40,15 +40,20 @@ const Container = ({ header = {}, colDef = [], rowData = [], options = {} } = {}
         showTable={setShowTable}
         onSearch={setSearchString}
       /> : null}
-      <div className="panel-body">
-        {showTable && <Table
-          colDef={colDef || []}
-          rowData={rows || []}
-          options={options || {}}
-          header={header || {}}
-        />
-        }
-      </div>
+      {showTable && (
+        <div className="panel-body">
+
+          <>
+            {options.beforeTable ? options.beforeTable : null}
+            <Table
+              colDef={colDef || []}
+              rowData={rows || []}
+              options={options || {}}
+              header={header || {}}
+            />
+          </>
+        </div>
+      )}
     </section>
   );
 };
