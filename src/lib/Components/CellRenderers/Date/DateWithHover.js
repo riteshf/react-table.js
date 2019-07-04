@@ -1,17 +1,18 @@
 import React from 'react';
+import { format } from "date-fns";
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
-const DateWithHover = ({ hover, value = 0, format = "DD-MMM-YYYY", style = {} }) => {
+const DateWithHover = ({ hoverValue = 0, hoverFormat = "DD-MMM-YYYY", value = 0, valueFormat = "DD-MMM-YYYY", style = {} }) => {
     return (
         <OverlayTrigger
             placement="bottom"
             overlay={
                 <Tooltip id={"tooltip-bottom"}>
-                    {hover}
+                    {format(hoverValue, hoverFormat)}
                 </Tooltip>
             }>
             <div style={style}>
-                {format(value, format)}
+                {format(value, valueFormat)}
             </div>
         </OverlayTrigger>
     );

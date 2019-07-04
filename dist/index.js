@@ -850,24 +850,33 @@ var Date = function Date(_ref) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! date-fns */ "date-fns");
+/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(date_fns__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "react-bootstrap");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__);
+
+
 
 
 var DateWithHover = function DateWithHover(_ref) {
-  var hover = _ref.hover,
+  var _ref$hoverValue = _ref.hoverValue,
+      hoverValue = _ref$hoverValue === void 0 ? 0 : _ref$hoverValue,
+      _ref$hoverFormat = _ref.hoverFormat,
+      hoverFormat = _ref$hoverFormat === void 0 ? "DD-MMM-YYYY" : _ref$hoverFormat,
       _ref$value = _ref.value,
       value = _ref$value === void 0 ? 0 : _ref$value,
-      _ref$format = _ref.format,
-      format = _ref$format === void 0 ? "DD-MMM-YYYY" : _ref$format,
+      _ref$valueFormat = _ref.valueFormat,
+      valueFormat = _ref$valueFormat === void 0 ? "DD-MMM-YYYY" : _ref$valueFormat,
       _ref$style = _ref.style,
       style = _ref$style === void 0 ? {} : _ref$style;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(OverlayTrigger, {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["OverlayTrigger"], {
     placement: "bottom",
-    overlay: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Tooltip, {
+    overlay: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Tooltip"], {
       id: "tooltip-bottom"
-    }, hover)
+    }, Object(date_fns__WEBPACK_IMPORTED_MODULE_1__["format"])(hoverValue, hoverFormat))
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     style: style
-  }, format(value, format)));
+  }, Object(date_fns__WEBPACK_IMPORTED_MODULE_1__["format"])(value, valueFormat)));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (DateWithHover);
@@ -2093,6 +2102,17 @@ module.exports = require("@fortawesome/free-solid-svg-icons");
 /***/ (function(module, exports) {
 
 module.exports = require("@fortawesome/react-fontawesome");
+
+/***/ }),
+
+/***/ "date-fns":
+/*!***************************!*\
+  !*** external "date-fns" ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("date-fns");
 
 /***/ }),
 
