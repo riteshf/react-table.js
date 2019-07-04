@@ -839,17 +839,56 @@ var Date = function Date(_ref) {
 
 /***/ }),
 
+/***/ "./src/lib/Components/CellRenderers/Date/DateWithHover.js":
+/*!****************************************************************!*\
+  !*** ./src/lib/Components/CellRenderers/Date/DateWithHover.js ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var DateWithHover = function DateWithHover(_ref) {
+  var hover = _ref.hover,
+      _ref$value = _ref.value,
+      value = _ref$value === void 0 ? 0 : _ref$value,
+      _ref$format = _ref.format,
+      format = _ref$format === void 0 ? "DD-MMM-YYYY" : _ref$format,
+      _ref$style = _ref.style,
+      style = _ref$style === void 0 ? {} : _ref$style;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(OverlayTrigger, {
+    placement: "bottom",
+    overlay: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Tooltip, {
+      id: "tooltip-bottom"
+    }, hover)
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: style
+  }, format(value, format)));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (DateWithHover);
+
+/***/ }),
+
 /***/ "./src/lib/Components/CellRenderers/Date/index.js":
 /*!********************************************************!*\
   !*** ./src/lib/Components/CellRenderers/Date/index.js ***!
   \********************************************************/
-/*! exports provided: Date */
+/*! exports provided: Date, DateWithHover */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Date__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Date */ "./src/lib/Components/CellRenderers/Date/Date.js");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Date", function() { return _Date__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+/* harmony import */ var _DateWithHover__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DateWithHover */ "./src/lib/Components/CellRenderers/Date/DateWithHover.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DateWithHover", function() { return _DateWithHover__WEBPACK_IMPORTED_MODULE_1__["default"]; });
+
 
 
 
@@ -916,7 +955,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!***************************************************!*\
   !*** ./src/lib/Components/CellRenderers/index.js ***!
   \***************************************************/
-/*! exports provided: AfterRow, Date, SimpleProgressBar */
+/*! exports provided: AfterRow, Date, DateWithHover, SimpleProgressBar */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -926,6 +965,8 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony import */ var _Date__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Date */ "./src/lib/Components/CellRenderers/Date/index.js");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Date", function() { return _Date__WEBPACK_IMPORTED_MODULE_1__["Date"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DateWithHover", function() { return _Date__WEBPACK_IMPORTED_MODULE_1__["DateWithHover"]; });
 
 /* harmony import */ var _ProgressBar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ProgressBar */ "./src/lib/Components/CellRenderers/ProgressBar/index.js");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SimpleProgressBar", function() { return _ProgressBar__WEBPACK_IMPORTED_MODULE_2__["SimpleProgressBar"]; });
@@ -1519,7 +1560,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!*************************************!*\
   !*** ./src/lib/Components/index.js ***!
   \*************************************/
-/*! exports provided: Table, AfterRow, Date, SimpleProgressBar */
+/*! exports provided: Table, AfterRow, Date, DateWithHover, SimpleProgressBar */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1531,6 +1572,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "AfterRow", function() { return _CellRenderers__WEBPACK_IMPORTED_MODULE_1__["AfterRow"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Date", function() { return _CellRenderers__WEBPACK_IMPORTED_MODULE_1__["Date"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DateWithHover", function() { return _CellRenderers__WEBPACK_IMPORTED_MODULE_1__["DateWithHover"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SimpleProgressBar", function() { return _CellRenderers__WEBPACK_IMPORTED_MODULE_1__["SimpleProgressBar"]; });
 
@@ -2011,7 +2054,7 @@ var getSortedData = function getSortedData(colDef, rowData, sortBy) {
 /*!**************************!*\
   !*** ./src/lib/index.js ***!
   \**************************/
-/*! exports provided: Table, AfterRow, Date, SimpleProgressBar */
+/*! exports provided: Table, AfterRow, Date, DateWithHover, SimpleProgressBar */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2022,6 +2065,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "AfterRow", function() { return _Components__WEBPACK_IMPORTED_MODULE_0__["AfterRow"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Date", function() { return _Components__WEBPACK_IMPORTED_MODULE_0__["Date"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DateWithHover", function() { return _Components__WEBPACK_IMPORTED_MODULE_0__["DateWithHover"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SimpleProgressBar", function() { return _Components__WEBPACK_IMPORTED_MODULE_0__["SimpleProgressBar"]; });
 
