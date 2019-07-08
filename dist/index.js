@@ -1883,48 +1883,45 @@ var Table = function Table() {
   var pageOptions = options.paginationOptions || {};
 
   var getNext = function getNext(rowData, pageId) {
-    return {
-      nextPage: true,
+    return Promise.resolve({
+      pageId: pageId + 1,
       data: Object(_Utils_rows__WEBPACK_IMPORTED_MODULE_3__["getDataWithinIndexRange"])((pageId - 1) * paginationOptions.itemsPerPage, pageId * paginationOptions.itemsPerPage, rowData)
-    };
+    });
   };
 
   var getPrevious = function getPrevious(rowData, pageId) {
-    return {
-      nextPage: true,
+    return Promise.resolve({
+      pageId: pageId - 1,
       data: Object(_Utils_rows__WEBPACK_IMPORTED_MODULE_3__["getDataWithinIndexRange"])((pageId - 1) * paginationOptions.itemsPerPage, pageId * paginationOptions.itemsPerPage, rowData)
-    };
+    });
   };
 
   var paginationOptions = {
     itemsPerPage: pageOptions.itemsPerPage || 10,
     pageRangeDisplayed: pageOptions.pageRangeDisplayed || 4,
     getNext: pageOptions.getNext || getNext,
-    getPrevious: pageOptions.getPrevious || getPrevious
+    getPrevious: pageOptions.getPrevious || getPrevious,
+    pageId: pageOptions.pageId
   };
 
   var changePageWithData = function changePageWithData(pageId) {
-    var sortedData = Object(_Utils_rows__WEBPACK_IMPORTED_MODULE_3__["getSortedData"])(colDef, rowData, sortBy);
-    var nextDataToShow = {};
-
     if (activePage === pageId) {
-      nextDataToShow = {
-        nextPage: false,
-        data: Object(_Utils_rows__WEBPACK_IMPORTED_MODULE_3__["getDataWithinIndexRange"])((pageId - 1) * paginationOptions.itemsPerPage, pageId * paginationOptions.itemsPerPage, rowData)
-      };
+      var sortedData = Object(_Utils_rows__WEBPACK_IMPORTED_MODULE_3__["getSortedData"])(colDef, rowData, sortBy);
+      var nextData = Object(_Utils_rows__WEBPACK_IMPORTED_MODULE_3__["getDataWithinIndexRange"])((pageId - 1) * paginationOptions.itemsPerPage, pageId * paginationOptions.itemsPerPage, sortedData);
+      setRows(nextData.slice(0, pageOptions.itemsPerPage));
+      setActivePage(pageId);
     } else if (activePage < pageId) {
-      nextDataToShow = paginationOptions.getNext(sortedData, pageId);
+      paginationOptions.getNext(rowData, pageId);
     } else if (activePage > pageId) {
-      nextDataToShow = paginationOptions.getPrevious(sortedData, pageId);
+      paginationOptions.getPrevious(rowData, pageId);
     }
 
-    setRows(nextDataToShow.data.slice(0, pageOptions.itemsPerPage));
     setActivePage(pageId);
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     setShowPagination(rowData.length > paginationOptions.itemsPerPage);
-    changePageWithData(1);
+    changePageWithData(paginationOptions.pageId);
   }, [sortBy, rowData, header]);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "table-responsive"

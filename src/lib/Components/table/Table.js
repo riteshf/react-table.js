@@ -17,60 +17,56 @@ const Table = ({ header = {}, options = {}, colDef = [], rowData = [] } = {}) =>
   const pageOptions = options.paginationOptions || {};
 
   const getNext = (rowData, pageId) => {
-    return {
-      nextPage: true,
+    return Promise.resolve({
+      pageId: pageId + 1,
       data: getDataWithinIndexRange(
         (pageId - 1) * paginationOptions.itemsPerPage,
         pageId * paginationOptions.itemsPerPage,
         rowData
       )
-    }
+    })
   };
 
   const getPrevious = (rowData, pageId) => {
-    return {
-      nextPage: true,
+    return Promise.resolve({
+      pageId: pageId - 1,
       data: getDataWithinIndexRange(
         (pageId - 1) * paginationOptions.itemsPerPage,
         pageId * paginationOptions.itemsPerPage,
         rowData
       ),
-    }
+    })
   };
 
   const paginationOptions = {
     itemsPerPage: pageOptions.itemsPerPage || 10,
     pageRangeDisplayed: pageOptions.pageRangeDisplayed || 4,
     getNext: pageOptions.getNext || getNext,
-    getPrevious: pageOptions.getPrevious || getPrevious
+    getPrevious: pageOptions.getPrevious || getPrevious,
+    pageId: pageOptions.pageId,
   };
 
   const changePageWithData = (pageId) => {
-    const sortedData = getSortedData(colDef, rowData, sortBy);
-    let nextDataToShow = {};
     if (activePage === pageId) {
-      nextDataToShow = {
-        nextPage: false,
-        data: getDataWithinIndexRange(
-          (pageId - 1) * paginationOptions.itemsPerPage,
-          pageId * paginationOptions.itemsPerPage,
-          rowData
-        )
-      }
+      const sortedData = getSortedData(colDef, rowData, sortBy);
+      const nextData = getDataWithinIndexRange(
+        (pageId - 1) * paginationOptions.itemsPerPage,
+        pageId * paginationOptions.itemsPerPage,
+        sortedData
+      );
+      setRows(nextData.slice(0, pageOptions.itemsPerPage))
+      setActivePage(pageId);
     } else if (activePage < pageId) {
-      nextDataToShow = paginationOptions.getNext(sortedData, pageId)
+      paginationOptions.getNext(rowData, pageId);
     } else if (activePage > pageId) {
-      nextDataToShow = paginationOptions.getPrevious(sortedData, pageId)
+      paginationOptions.getPrevious(rowData, pageId);
     }
-
-    setRows(nextDataToShow.data.slice(0, pageOptions.itemsPerPage))
     setActivePage(pageId);
   };
 
   useEffect(() => {
-
     setShowPagination(rowData.length > paginationOptions.itemsPerPage);
-    changePageWithData(1)
+    changePageWithData(paginationOptions.pageId)
   }, [sortBy, rowData, header])
 
 

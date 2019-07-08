@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const App = () => {
   const [rowData, setRowData] = useState(null)
+  const [pageId, setPageId] = useState(1)
   const [afterRowIndex, setAfterRowIndex] = useState(null)
 
   const filterchange = (newField, newValue) => {
@@ -104,44 +105,40 @@ const App = () => {
       paginationOptions: {
         itemsPerPage: 5,
         pageRangeDisplayed: 1,
-        getNext: (currentDataArray) => {
-          return {
-            nextPage: true,
-            data: [
-              { a: "zzz", b: 999 },
-              { a: "zzz", b: 999 },
-              { a: "zzz", b: 999 },
-              { a: "zzz", b: 999 },
-              { a: "zzz", b: 999 },
-              { a: "zzz", b: 999 },
-              { a: "zzz", b: 999 },
-              { a: "zzz", b: 999 },
-              { a: "zzz", b: 999 },
-              { a: "zzz", b: 999 },
-              { a: "zzz", b: 999 },
-              { a: "zzz", b: 999 }
-            ]
-          }
+        pageId: pageId,
+        getNext: (currentDataArray, pageId) => {
+          setRowData(currentDataArray.concat([
+            { a: "zzz", b: 999 },
+            { a: "zzz", b: 999 },
+            { a: "zzz", b: 999 },
+            { a: "zzz", b: 999 },
+            { a: "zzz", b: 999 },
+            { a: "zzz", b: 999 },
+            { a: "zzz", b: 999 },
+            { a: "zzz", b: 999 },
+            { a: "zzz", b: 999 },
+            { a: "zzz", b: 999 },
+            { a: "zzz", b: 999 },
+            { a: "zzz", b: 999 }
+          ]));
+          return setPageId(pageId);
         },
-        getPrevious: (currentDataArray) => {
-          return {
-            previousPage: true,
-            data: [
-              { a: "ccc", b: 123 },
-              { a: "ccc", b: 123 },
-              { a: "ccc", b: 123 },
-              { a: "ccc", b: 123 },
-              { a: "ccc", b: 123 },
-              { a: "ccc", b: 123 },
-              { a: "ccc", b: 123 },
-              { a: "ccc", b: 123 },
-              { a: "ccc", b: 123 },
-              { a: "ccc", b: 123 },
-              { a: "ccc", b: 123 },
-              { a: "ccc", b: 123 }
-            ]
-          }
-        },
+        // getPrevious: (currentDataArray) => {
+        //   return Promise.resolve([
+        //       { a: "ccc", b: 123 },
+        //       { a: "ccc", b: 123 },
+        //       { a: "ccc", b: 123 },
+        //       { a: "ccc", b: 123 },
+        //       { a: "ccc", b: 123 },
+        //       { a: "ccc", b: 123 },
+        //       { a: "ccc", b: 123 },
+        //       { a: "ccc", b: 123 },
+        //       { a: "ccc", b: 123 },
+        //       { a: "ccc", b: 123 },
+        //       { a: "ccc", b: 123 },
+        //       { a: "ccc", b: 123 }
+        //     ]);
+        // },
       }
     },
   };
