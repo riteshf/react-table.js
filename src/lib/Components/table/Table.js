@@ -43,7 +43,7 @@ const Table = ({ header = {}, options = {}, colDef = [], rowData = [] } = {}) =>
     pageRangeDisplayed: pageOptions.pageRangeDisplayed || 4,
     getNext: pageOptions.getNext || getNext,
     getPrevious: pageOptions.getPrevious || getPrevious,
-    pageId: pageOptions.pageId,
+    pageId: pageOptions.pageId || 1,
   };
 
   const changePageWithData = (pageId) => {

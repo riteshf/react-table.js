@@ -1901,7 +1901,7 @@ var Table = function Table() {
     pageRangeDisplayed: pageOptions.pageRangeDisplayed || 4,
     getNext: pageOptions.getNext || getNext,
     getPrevious: pageOptions.getPrevious || getPrevious,
-    pageId: pageOptions.pageId
+    pageId: pageOptions.pageId || 1
   };
 
   var changePageWithData = function changePageWithData(pageId) {
