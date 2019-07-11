@@ -6,36 +6,34 @@ import { Rows } from "../row";
 import { Column } from "../column";
 
 const Table = ({ header = {}, options = {}, colDef = [], rowData = [] } = {}) => {
+  const pageOptions = options.paginationOptions || {};
   const [activePage, setActivePage] = useState(1);
-  const [showPagination, setShowPagination] = useState(false)
+  const [showPagination, setShowPagination] = useState(pageOptions.defaultPaginationEnabled)
   const [rows, setRows] = useState([]);
   const [sortBy, setSortBy] = useState({
     sortBy: options.sortBy,
     sortingOrder: options.sortingOrder || "ASC"
   });
 
-  const pageOptions = options.paginationOptions || {};
 
   const getNext = (rowData, pageId) => {
-    return Promise.resolve({
-      pageId: pageId + 1,
-      data: getDataWithinIndexRange(
-        (pageId - 1) * paginationOptions.itemsPerPage,
-        pageId * paginationOptions.itemsPerPage,
-        rowData
-      )
-    })
+    const sortedData = getSortedData(colDef, rowData, sortBy);
+    const nextData = getDataWithinIndexRange(
+      (pageId - 1) * paginationOptions.itemsPerPage,
+      pageId * paginationOptions.itemsPerPage,
+      sortedData
+    );
+    setRows(nextData);
   };
 
   const getPrevious = (rowData, pageId) => {
-    return Promise.resolve({
-      pageId: pageId - 1,
-      data: getDataWithinIndexRange(
-        (pageId - 1) * paginationOptions.itemsPerPage,
-        pageId * paginationOptions.itemsPerPage,
-        rowData
-      ),
-    })
+    const sortedData = getSortedData(colDef, rowData, sortBy);
+    const nextData = getDataWithinIndexRange(
+      (pageId - 1) * paginationOptions.itemsPerPage,
+      pageId * paginationOptions.itemsPerPage,
+      sortedData
+    );
+    setRows(nextData);
   };
 
   const paginationOptions = {
@@ -44,6 +42,7 @@ const Table = ({ header = {}, options = {}, colDef = [], rowData = [] } = {}) =>
     getNext: pageOptions.getNext || getNext,
     getPrevious: pageOptions.getPrevious || getPrevious,
     pageId: pageOptions.pageId || 1,
+    defaultPaginationEnabled: pageOptions.defaultPaginationEnabled,
   };
 
   const changePageWithData = (pageId) => {
@@ -55,7 +54,6 @@ const Table = ({ header = {}, options = {}, colDef = [], rowData = [] } = {}) =>
         sortedData
       );
       setRows(nextData.slice(0, pageOptions.itemsPerPage))
-      setActivePage(pageId);
     } else if (activePage < pageId) {
       paginationOptions.getNext(rowData, pageId);
     } else if (activePage > pageId) {

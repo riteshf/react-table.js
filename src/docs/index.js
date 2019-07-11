@@ -106,6 +106,7 @@ const App = () => {
         itemsPerPage: 5,
         pageRangeDisplayed: 1,
         pageId: pageId,
+        defaultPaginationEnabled: true,
         getNext: (currentDataArray, pageId) => {
           setRowData(currentDataArray.concat([
             { a: "zzz", b: 999 },
@@ -123,22 +124,6 @@ const App = () => {
           ]));
           return setPageId(pageId);
         },
-        // getPrevious: (currentDataArray) => {
-        //   return Promise.resolve([
-        //       { a: "ccc", b: 123 },
-        //       { a: "ccc", b: 123 },
-        //       { a: "ccc", b: 123 },
-        //       { a: "ccc", b: 123 },
-        //       { a: "ccc", b: 123 },
-        //       { a: "ccc", b: 123 },
-        //       { a: "ccc", b: 123 },
-        //       { a: "ccc", b: 123 },
-        //       { a: "ccc", b: 123 },
-        //       { a: "ccc", b: 123 },
-        //       { a: "ccc", b: 123 },
-        //       { a: "ccc", b: 123 }
-        //     ]);
-        // },
       }
     },
   };
