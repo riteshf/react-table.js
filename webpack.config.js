@@ -9,6 +9,7 @@ module.exports = {
     library: '',
     libraryTarget: 'commonjs'
   },
+  externals: [nodeExternals()],
   module: {
     rules: [
       {
@@ -24,5 +25,6 @@ module.exports = {
         use: ['style-loader', 'css-loader']
       }
     ]
-  }
+  },
+  devtool: 'source-map'
 };
