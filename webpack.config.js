@@ -9,7 +9,6 @@ module.exports = {
     library: '',
     libraryTarget: 'commonjs'
   },
-  externals: [nodeExternals()],
   module: {
     rules: [
       {
