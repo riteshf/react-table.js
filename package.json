@@ -1,6 +1,6 @@
 {
     "name": "react-table.js",
-    "version": "1.3.17",
+    "version": "1.3.18",
     "description": "A react table library with custom features",
     "main": "./dist/index.js",
     "author": "riteshf",
@@ -9,7 +9,7 @@
     "scripts": {
         "start": "parcel src/docs/index.html",
         "build": "webpack --config webpack.config.js --profile --progress",
-        "build:docs": "parcel build src/docs/index.js -d dist/docs/"
+        "build:docs": "parcel build src/lib/index.js -d dist/"
     },
     "peerDependencies": {
         "bootstrap": "^4.3.1",
