@@ -1,6 +1,6 @@
 {
     "name": "react-table.js",
-    "version": "1.3.20",
+    "version": "1.3.21",
     "description": "A react table library with custom features",
     "main": "./dist/index.js",
     "author": "riteshf",
@@ -8,7 +8,8 @@
     "repository": "riteshf/react-table.js",
     "scripts": {
         "start": "parcel src/docs/index.html",
-        "build": "parcel build src/lib/index.js -d dist/"
+        "build": "webpack",
+        "build:docs": "parcel build src/docs/index.js -d dist/docs/"
     },
     "peerDependencies": {
         "bootstrap": "^4.3.1",

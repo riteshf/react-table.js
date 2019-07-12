@@ -1,7 +1,7 @@
 const path = require('path');
 var nodeExternals = require('webpack-node-externals');
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: path.resolve(__dirname, 'src/lib/index.js'),
   output: {
     path: path.resolve(__dirname, './dist'),
@@ -13,7 +13,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.m?(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
         loader: 'babel-loader',
         options: {
