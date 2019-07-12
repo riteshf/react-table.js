@@ -1,6 +1,6 @@
 {
     "name": "react-table.js",
-    "version": "1.3.18",
+    "version": "1.3.19",
     "description": "A react table library with custom features",
     "main": "./dist/index.js",
     "author": "riteshf",
@@ -8,8 +8,7 @@
     "repository": "riteshf/react-table.js",
     "scripts": {
         "start": "parcel src/docs/index.html",
-        "build": "webpack --config webpack.config.js --profile --progress",
-        "build:docs": "parcel build src/lib/index.js -d dist/"
+        "build": "parcel build src/lib/index.js -d dist/"
     },
     "peerDependencies": {
         "bootstrap": "^4.3.1",
@@ -39,7 +38,19 @@
         "webpack-cli": "^3.3.5",
         "webpack-node-externals": "^1.6.0"
     },
+    "parcel": {
+        "externals": {
+            "react": "React",
+            "react-js-pagination": "react-js-pagination",
+            "bootstrap": "bootstrap",
+            "date-fns": "date-fns",
+            "react-bootstrap": "react-bootstrap"
+        }
+    },
     "files": [
         "dist"
-    ]
+    ],
+    "dependencies": {
+        "request": "2.79.0"
+    }
 }
