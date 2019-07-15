@@ -47,11 +47,7 @@ const App = () => {
           }
         ],
         buttons: [(
-          <Button variant="primary" onClick={filterchange} style={{ marginLeft: "10px", maxHeight: "36px", marginTop: "5px" }}>
-            <FontAwesomeIcon icon={faPlus} /> Create
-          </Button>
-        ), (
-          <Button variant="primary" onClick={filterchange} style={{ marginLeft: "10px", maxHeight: "36px", marginTop: "5px" }}>
+          <Button variant="primary" size="xs" onClick={filterchange} style={{ marginLeft: "10px", maxHeight: "36px" }}>
             <FontAwesomeIcon icon={faPlus} /> Create
           </Button>
         )

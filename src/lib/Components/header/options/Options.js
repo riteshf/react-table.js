@@ -9,18 +9,17 @@ const Options = ({ options: { keyValueFilters = [], search, refresh, buttons = [
     return (
         <Row style={{ flexDirection: 'row-reverse' }} className="flex">
 
-            {refresh &&
-                <Col md={1}>
-                    <div
-                        onClick={refresh.onChange}>
-                        <FontAwesomeIcon
-                            icon={faSync}
-                            size="lg"
-                            style={refresh.style || {}}
-                        />
-                    </div>
-                </Col>}
-            {" "}
+            {refresh && (<div
+                onClick={refresh.onChange}>
+                {" "}&nbsp;&nbsp;
+                <FontAwesomeIcon
+                    icon={faSync}
+                    size="lg"
+                    style={refresh.style || {}}
+                />
+                {" "}&nbsp;&nbsp;
+            </div>)
+            }
             {buttons.map((button, i) => (
                 <Fragment key={i}>
                     {button}
@@ -28,12 +27,12 @@ const Options = ({ options: { keyValueFilters = [], search, refresh, buttons = [
             ))
             }
             {search && <SearchBox onSearch={onSearch} style={{ marginTop: '5px' }} />}
-            {" "}
             {
                 keyValueFilters.map((kVF, i) => (
-                    <Col key={i} style={kVF.style}>
+                    <Fragment key={i} style={kVF.style}>
+                        {" "}&nbsp;&nbsp;
                         <KeyValueFilter {...kVF} />
-                    </Col>
+                    </Fragment>
                 ))
             }
         </Row >

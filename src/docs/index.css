@@ -4,4 +4,10 @@
 
 .flex {
     display: flex;
-  }
+}
+
+
+.btn-xs, .btn-group-xs>.btn {
+    padding: 1px 10px;
+    font-size: 75%;
+}
