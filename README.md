@@ -13,9 +13,9 @@ npm install --save react-table.js
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
+import React, { Component } from "react"
 
-import MyComponent from 'react-table.js'
+import MyComponent from "react-table.js"
 
 class Example extends Component {
   render () {
