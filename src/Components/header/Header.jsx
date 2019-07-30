@@ -5,10 +5,10 @@ import { Col, Row } from "react-bootstrap";
 const Header = ({ header = {}, showOptions, showTable, onSearch = "" } = {}) => {
     const headerStyle = header && header.style ? header.style : {};
     return (
-        <div className="panel-heading panel-resize baseFieldColor" style={headerStyle}>
+        <div className="panel-heading panel-resize baseFieldColor">
             <Row>
                 <Col>
-                    <h4 onClick={() => showTable()}>
+                    <h4 onClick={() => showTable()} style={headerStyle}>
                         {header.icon && <FontAwesomeIcon icon={header.icon} style={{ color: "black" }} />}
                         {`  ${header.name}`}
                     </h4>
