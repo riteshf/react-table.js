@@ -8,7 +8,6 @@ import { SearchBox } from "./Search";
 const Options = ({ options: { keyValueFilters = [], search, refresh, buttons = [] }, onSearch } = {}) => {
     return (
         <Row style={{ flexDirection: "row-reverse" }} className="flex">
-
             {refresh && (<div
                 onClick={refresh.onChange}>
                 {" "}&nbsp;&nbsp;

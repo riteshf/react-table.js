@@ -12,7 +12,7 @@ const DateWithHover = ({ hoverValue = 0, hoverFormat = "DD-MMM-YYYY", value = 0,
                 </Tooltip>
             }>
             <div style={style}>
-                {format(value, valueFormat)}
+                {value ? format(value, valueFormat): " "}
             </div>
         </OverlayTrigger>
     );
