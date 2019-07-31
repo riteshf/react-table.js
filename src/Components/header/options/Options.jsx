@@ -29,9 +29,7 @@ const Options = ({ options: { keyValueFilters = [], search, refresh, buttons = [
             {
                 keyValueFilters.map((kVF, i) => (
                     <Fragment key={i}>
-                        <span style={kVF.style}>
-                            <KeyValueFilter {...kVF} />
-                        </span>
+                        <KeyValueFilter {...kVF} />
                     </Fragment>
                 ))
             }
