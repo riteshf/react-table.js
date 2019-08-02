@@ -2,10 +2,10 @@ import React from "react";
 import { ProgressBar } from "react-bootstrap";
 
 
-const SimpleProgressBar =({ bars = [] } = {}) => {
+const SimpleProgressBar = ({ bars = [] } = {}) => {
     return (
         <ProgressBar>
-            {bars.map(({ variant = "", now = Number, label }, index) => <ProgressBar
+            {bars.map(({ variant = "", now = 0, label = "" }, index) => <ProgressBar
                 key={index}
                 striped
                 variant={variant}

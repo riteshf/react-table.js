@@ -6,15 +6,35 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button } from "react-bootstrap";
 
 import { Table, AfterRow } from "./app";
+import { SimpleProgressBar } from "./Components";
+
+const bars = [
+    {
+        variant: "success",
+        now: 0,
+        label: "green",
+    },
+    {
+        variant: "warning",
+        now: 10,
+        label: "yellow",
+    },
+    {
+        variant: "danger",
+        now: 10,
+        label: "red",
+    }
+];
+const filterchange = (newField, newValue) => {
+    console.log("filter change", newField, newValue);
+};
+
 
 const App = () => {
     const [rowData, setRowData] = useState(null);
     const [pageId, setPageId] = useState(1);
     const [afterRowIndex, setAfterRowIndex] = useState(null);
 
-    const filterchange = (newField, newValue) => {
-        console.log("filter change", newField, newValue);
-    };
     const tableOptions = {
         header: {
             name: "Sample Table",
@@ -60,7 +80,7 @@ const App = () => {
                 fieldName: "",
                 style: { textAlign: "center", width: "10px" },
                 options: {},
-                Cell: (row, index) => AfterRow({keyIndex:index, afterRowIndex: afterRowIndex, setAfterRowIndex: setAfterRowIndex}),
+                Cell: (row, index) => AfterRow({ keyIndex: index, afterRowIndex: afterRowIndex, setAfterRowIndex: setAfterRowIndex }),
             },
             {
                 name: "a a",
@@ -70,7 +90,7 @@ const App = () => {
                     sortable: true,
                     searchable: true,
                 },
-                Cell: row => <span style={{ background: "red" }}>{row["a"]}</span>,
+                Cell: row => <SimpleProgressBar bars={bars} />,
             },
             {
                 name: "b",
