@@ -17,8 +17,8 @@ const KeyValueFilter = ({
     return (
         <Row style={{ marginRight: "5px" }}>
             <Col>
-                {label && (<Form.Label style={style}>{label}:&nbsp;</Form.Label>)}
-                <Form.Control as="select"
+                {label && (<Form.Label style={style} size="sm">{label}:&nbsp;</Form.Label>)}
+                <Form.Control as="select" size="sm"
                     style={{ fontSize: "inherit", display: "initial", width: "fit-content" }}
                     defaultValue={newValue}
                     onChange={(e) =>
