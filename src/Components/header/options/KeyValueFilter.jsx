@@ -17,22 +17,18 @@ const KeyValueFilter = ({
     return (
         <Row style={{ marginRight: "5px", alignContent: "center" }}>
             <Col>
-                {label && (
-                    <div style={style}>
-                        <label style={{ color: "#428bca" }}>{label}:&nbsp;</label>
-                        <select
-                            defaultValue={newValue}
-                            onChange={(e) =>
-                                changeFilter(e.target.value)
-                            }>
-                            {Object.keys(valueObject).map(field => (
-                                <option key={field} value={field}>
-                                    {field}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                )}
+                {label && (<label style={style}>{label}:&nbsp;</label>)}
+                <select
+                    defaultValue={newValue}
+                    onChange={(e) =>
+                        changeFilter(e.target.value)
+                    }>
+                    {Object.keys(valueObject).map(field => (
+                        <option key={field} value={field}>
+                            {field}
+                        </option>
+                    ))}
+                </select>
             </Col>
         </Row>
     );
