@@ -2,13 +2,12 @@ import React from "react";
 import { ProgressBar } from "react-bootstrap";
 
 
-export default ({ bars = [] } = {}) => {
+const SimpleProgressBar =({ bars = [] } = {}) => {
     return (
         <ProgressBar>
             {bars.map(({ variant = "", now = Number, label }, index) => <ProgressBar
                 key={index}
                 striped
-                animated
                 variant={variant}
                 now={now}
                 lable={label}
@@ -16,3 +15,6 @@ export default ({ bars = [] } = {}) => {
         </ProgressBar>
     );
 };
+
+
+export default SimpleProgressBar;

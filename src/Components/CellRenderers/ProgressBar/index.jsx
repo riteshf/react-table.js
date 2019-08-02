@@ -1,4 +1,4 @@
 import SimpleProgressBar from "./SimpleProgressBar";
 
 
-export { SimpleProgressBar }
+export { SimpleProgressBar };
