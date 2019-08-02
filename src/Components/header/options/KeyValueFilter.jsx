@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Form } from "react-bootstrap";
 
 const KeyValueFilter = ({
     defaultValue,
@@ -15,10 +15,11 @@ const KeyValueFilter = ({
     };
 
     return (
-        <Row style={{ marginRight: "5px", alignContent: "center" }}>
+        <Row style={{ marginRight: "5px" }}>
             <Col>
-                {label && (<label style={style}>{label}:&nbsp;</label>)}
-                <select
+                {label && (<Form.Label style={style}>{label}:&nbsp;</Form.Label>)}
+                <Form.Control as="select"
+                    style={{ fontSize: "inherit", display: "initial", width: "fit-content" }}
                     defaultValue={newValue}
                     onChange={(e) =>
                         changeFilter(e.target.value)
@@ -28,7 +29,7 @@ const KeyValueFilter = ({
                             {field}
                         </option>
                     ))}
-                </select>
+                </Form.Control>
             </Col>
         </Row>
     );
