@@ -15,23 +15,21 @@ const KeyValueFilter = ({
     };
 
     return (
-        <Row style={{ marginRight: "5px" }}>
-            <Col>
-                {label && (<Form.Label style={style} size="sm">{label}:&nbsp;</Form.Label>)}
-                <Form.Control as="select" size="sm"
-                    style={{ fontSize: "inherit", display: "initial", width: "fit-content" }}
-                    defaultValue={newValue}
-                    onChange={(e) =>
-                        changeFilter(e.target.value)
-                    }>
-                    {Object.keys(valueObject).map(field => (
-                        <option key={field} value={field}>
-                            {field}
-                        </option>
-                    ))}
-                </Form.Control>
-            </Col>
-        </Row>
+        <div style={{ marginRight: "5px" }}>
+            {label && (<Form.Label style={style} size="sm">{label}:&nbsp;</Form.Label>)}
+            <Form.Control as="select" size="sm"
+                style={{ fontSize: "inherit", display: "initial", width: "fit-content" }}
+                defaultValue={newValue}
+                onChange={(e) =>
+                    changeFilter(e.target.value)
+                }>
+                {Object.keys(valueObject).map(field => (
+                    <option key={field} value={field}>
+                        {field}
+                    </option>
+                ))}
+            </Form.Control>
+        </div>
     );
 };
 

@@ -64,7 +64,7 @@ const App = () => {
                     }
                 ],
                 buttons: [(
-                    <Button key={"1"} variant="primary" size="xs" onClick={filterchange} style={{ marginLeft: "10px", maxHeight: "36px" }}>
+                    <Button key={"1"} variant="primary" size="sm" onClick={filterchange} style={{ marginLeft: "10px", maxHeight: "36px" }}>
                         <FontAwesomeIcon icon={faPlus} /> Create
                     </Button>
                 )],
