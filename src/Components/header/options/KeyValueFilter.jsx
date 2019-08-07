@@ -15,7 +15,7 @@ const KeyValueFilter = ({
     };
 
     return (
-        <div style={{ marginRight: "5px" }}>
+        <div>
             {label && (<Form.Label style={style} size="sm">{label}:&nbsp;</Form.Label>)}
             <Form.Control as="select" size="sm"
                 style={{ fontSize: "inherit", display: "initial", width: "fit-content" }}

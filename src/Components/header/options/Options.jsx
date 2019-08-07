@@ -7,7 +7,7 @@ import { SearchBox } from "./Search";
 const Options = ({ options: { keyValueFilters = [], search, refresh, buttons = [] }, onSearch } = {}) => {
     return (
         <>
-            {refresh && (<div style={{ paddingLeft: "5px", float: "right" }}
+            {refresh && (<div style={{ paddingLeft: "5px", float: "right", cursor: "pointer" }}
                 onClick={refresh.onChange}>
                 {" "}&nbsp;&nbsp;
                 <FontAwesomeIcon
