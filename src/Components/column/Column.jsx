@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-import { Sortable } from "./Sortable"
+import { Sortable } from "./Sortable";
+
 const Column = ({ colDef, options, sort }) => {
     const [columns, setColumns] = useState([]);
 
@@ -12,13 +13,13 @@ const Column = ({ colDef, options, sort }) => {
                 sort({
                     sortBy: headerName,
                     sortingOrder: column.options.sortingOrder === "ASC" ? "DESC" : "ASC",
-                })
+                });
             } else {
                 delete column.options.sortBy;
                 delete column.options.sortingOrder;
             }
             return column;
-        }))
+        }));
     };
 
     useEffect(() => {
@@ -32,7 +33,7 @@ const Column = ({ colDef, options, sort }) => {
                 delete column.options.sortingOrder;
             }
             return column;
-        }))
+        }));
     }, []);
     return (
         <tr>{columns.map((column, key) => (
