@@ -18,7 +18,7 @@ const KeyValueFilter = ({
         <div>
             {label && (<Form.Label style={style} size="sm">{label}:&nbsp;</Form.Label>)}
             <Form.Control as="select" size="sm"
-                style={{ fontSize: "inherit", display: "initial", width: "fit-content" }}
+                style={{ fontSize: "12px", display: "initial", width: "fit-content" }}
                 defaultValue={newValue}
                 onChange={(e) =>
                     changeFilter(e.target.value)
