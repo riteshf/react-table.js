@@ -11,17 +11,17 @@ const getSearchableFieldNames = (columns) => columns
     .filter(column => column.options && column.options.searchable)
     .map(column => column.fieldName);
 
+const getFieldValueFromRowData = (str, rowData) => str.split(".").reduce((acc, part) => acc[part] || acc, rowData);
 
 const filterData = (searchString = "", columns = [], rows = []) => {
     const fieldNames = getSearchableFieldNames(columns);
-    return searchString ? rows
-        .filter(row => {
-            // console.log(fieldNames);
-            return fieldNames.filter(field => {
-                return String(row[field]).toLowerCase().startsWith(searchString.toLowerCase());
-            }).length;
-        }
-        ) : rows;
+    return searchString
+        ? rows.filter(row => fieldNames.filter(field => {
+            const value = getFieldValueFromRowData(field, row);
+            return String(value).toLowerCase().startsWith(searchString.toLowerCase());
+        }).length
+        )
+        : rows;
 };
 
 const Container = ({ header = {}, colDef = [], rowData = [], options = {} } = {}) => {
