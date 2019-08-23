@@ -15,10 +15,12 @@ const getSearchableFieldNames = (columns) => columns
 const filterData = (searchString = "", columns = [], rows = []) => {
     const fieldNames = getSearchableFieldNames(columns);
     return searchString ? rows
-        .filter(row => fieldNames
-            .filter(
-                field => String(row[field]).toLowerCase().startsWith(searchString.toLowerCase())
-            ).length
+        .filter(row => {
+            // console.log(fieldNames);
+            return fieldNames.filter(field => {
+                return String(row[field]).toLowerCase().startsWith(searchString.toLowerCase());
+            }).length;
+        }
         ) : rows;
 };
 
