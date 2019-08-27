@@ -7,8 +7,8 @@ const Rows = ({ colDef = [], rowData = [], headerOptions = { afterRow: { index: 
     const [afterRowIndex, setAfterRowIndex] = useState(headerOptions.afterRow ? headerOptions.afterRow.index : null);
 
     useEffect(() => {
-        setAfterRowIndex(headerOptions.afterRow ? headerOptions.afterRow.index : null);
-    }, [headerOptions.afterRow]);
+        setAfterRowIndex(headerOptions.afterRow ? headerOptions.afterRow.index : null)
+    }, [headerOptions.afterRow])
     return (
         <>
             {rowData.map((row, key) => (

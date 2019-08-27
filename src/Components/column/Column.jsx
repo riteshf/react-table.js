@@ -1,19 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { Sortable } from "./Sortable";
 
 const Column = ({ colDef, options, sort }) => {
-    const [columns, setColumns] = useState(colDef.map(column => {
-        column.options = column.options || {};
-        if (column.name === options.sortBy) {
-            column.options.sortBy = options.sortBy;
-            column.options.sortingOrder = options.sortingOrder === "ASC" ? "DESC" : "ASC";
-        } else {
-            delete column.options.sortBy;
-            delete column.options.sortingOrder;
-        }
-        return column;
-    }));
+    const [columns, setColumns] = useState([]);
 
     const updateCurrentState = (headerName) => {
         setColumns(columns.map(column => {
@@ -32,6 +22,19 @@ const Column = ({ colDef, options, sort }) => {
         }));
     };
 
+    useEffect(() => {
+        setColumns(colDef.map(column => {
+            column.options = column.options || {};
+            if (column.name === options.sortBy) {
+                column.options.sortBy = options.sortBy;
+                column.options.sortingOrder = options.sortingOrder === "ASC" ? "DESC" : "ASC";
+            } else {
+                delete column.options.sortBy;
+                delete column.options.sortingOrder;
+            }
+            return column;
+        }));
+    }, []);
     return (
         <tr>{columns.map((column, key) => (
             <th key={key} style={column.style || {}}>
