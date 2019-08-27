@@ -18,9 +18,8 @@ const filterData = (searchString = "", columns = [], rows = []) => {
     return searchString
         ? rows.filter(row => fieldNames.filter(field => {
             const value = getFieldValueFromRowData(field, row);
-            return String(value).toLowerCase().startsWith(searchString.toLowerCase());
-        }).length
-        )
+            return String(value).toLowerCase().includes(searchString.toLowerCase());
+        }).length)
         : rows;
 };
 
@@ -31,7 +30,7 @@ const Container = ({ header = {}, colDef = [], rowData = [], options = {} } = {}
     const setShowTable = () => shouldShowTable(!showTable);
 
     useEffect(() => {
-        setRows(filterData(searchString, colDef, rowData));
+        if (searchString) setRows(filterData(searchString, colDef, rowData));
     }, [searchString, rowData]);
 
     return (
