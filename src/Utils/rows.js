@@ -1,13 +1,19 @@
 const getDataWithinIndexRange = (from, to, data) =>
     data ? data.filter((row, index) => index >= from && index < to) : [];
 
+const getFieldValueFromRowData = (str, rowData) => str.split(".").reduce((acc, part) => acc[part] || acc, rowData);
+
 const numberSort = (a, b) => a < b ? -1 : a > b ? 1 : 0;
 const stringSort = (a, b) => a.toUpperCase() < b.toUpperCase() ? -1 : 1;
 const sortData = (data = [], fieldName, order) => {
     if (fieldName && data.length > 1) {
-        const newData = data.sort((a, b) => typeof a[fieldName] === "number"
-            ? numberSort(a[fieldName], b[fieldName])
-            : stringSort(a[fieldName], b[fieldName]));
+        const newData = data.sort((a, b) => {
+            const preRow = getFieldValueFromRowData(fieldName, a);
+            const postRow = getFieldValueFromRowData(fieldName, b);
+            return typeof preRow === "number"
+                ? numberSort(preRow, postRow)
+                : stringSort(preRow, postRow);
+        });
         return order === "ASC" ? newData : newData.reverse();
     } else {
         return data;
