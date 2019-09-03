@@ -7,7 +7,7 @@ const Rows = ({ colDef = [], rowData = [], headerOptions = { afterRow: { index: 
     const [afterRowIndex, setAfterRowIndex] = useState(headerOptions.afterRow ? headerOptions.afterRow.index : null);
 
     useEffect(() => {
-        setAfterRowIndex(headerOptions.afterRow ? headerOptions.afterRow.index : null)
+        setAfterRowIndex(headerOptions.afterRow ? headerOptions.afterRow.index : null);
     }, [headerOptions.afterRow]);
     return (
         <>
@@ -16,13 +16,13 @@ const Rows = ({ colDef = [], rowData = [], headerOptions = { afterRow: { index: 
                     <RowAfterRowCombo
                         colDef={colDef}
                         row={row}
-                        rowIndex={key}
+                        rowIndex={headerOptions.afterRow ? headerOptions.afterRow.id : key}
                         afterRowCell={headerOptions.afterRow ? headerOptions.afterRow.Cell : null}
                         afterRowIndex={afterRowIndex} />
                 </Fragment>
             ))}
         </>
-    )
-}
+    );
+};
 
 export { Rows };

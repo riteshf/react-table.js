@@ -9,21 +9,18 @@ const AfterRow = ({
     setAfterRowIndex = () => { },
     setRowData = () => { }
 }) => {
-
     const [font, setFont] = useState(faPlusSquare);
-
-    const getNewFont = (currentFont) => currentFont === faPlusSquare ? faMinusSquare : faPlusSquare;
 
     const getFont = (afterRowIndex) => {
         if (Number.isInteger(afterRowIndex) && afterRowIndex === keyIndex) {
-            setFont(getNewFont(font));
+            setFont(faPlusSquare);
             setAfterRowIndex(null);
         } else {
             setAfterRowIndex(keyIndex);
             setFont(faMinusSquare);
             setRowData(row);
         }
-    }
+    };
 
     return (
         <span key={keyIndex} onClick={() => getFont(afterRowIndex)}>

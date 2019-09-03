@@ -71,6 +71,7 @@ const App = () => {
                 afterRow: {
                     index: afterRowIndex,
                     Cell: <h1>Hi</h1>,
+                    id: "b",
                 }
             },
         },
@@ -80,7 +81,7 @@ const App = () => {
                 fieldName: "",
                 style: { textAlign: "center", width: "10px" },
                 options: {},
-                Cell: (row, index) => AfterRow({ keyIndex: index, afterRowIndex: afterRowIndex, setAfterRowIndex: setAfterRowIndex }),
+                Cell: (row, index) => AfterRow({ keyIndex: row.b, afterRowIndex: afterRowIndex, setAfterRowIndex: setAfterRowIndex }),
             },
             {
                 name: "a a",
@@ -90,7 +91,7 @@ const App = () => {
                     sortable: true,
                     searchable: true,
                 },
-                Cell: row => <SimpleProgressBar bars={bars} />,
+                Cell: () => SimpleProgressBar({ bars, }),
             },
             {
                 name: "b",

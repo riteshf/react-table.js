@@ -10,4 +10,4 @@ const AfterRow = ({ afterRowCell = { Cell: null }, colSpan = 2 } = {}) => (
     </tr>
 );
 
-export { AfterRow }
+export { AfterRow };

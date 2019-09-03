@@ -34,4 +34,4 @@ const getSortedData = (colDef, rowData, sortBy) => {
     }
 };
 
-export { getDataWithinIndexRange, getSortedData };
+export { getDataWithinIndexRange, getSortedData, getFieldValueFromRowData };
