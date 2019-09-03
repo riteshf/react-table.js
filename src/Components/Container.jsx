@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import "./container.css";
 import { Table } from "./table";
 import { Header } from "./header";
+import { getFieldValueFromRowData } from "../Utils/rows";
 
 
 const hasKeys = o => Object.keys(o).length > 0;
@@ -10,8 +11,6 @@ const hasKeys = o => Object.keys(o).length > 0;
 const getSearchableFieldNames = (columns) => columns
     .filter(column => column.options && column.options.searchable)
     .map(column => column.fieldName);
-
-const getFieldValueFromRowData = (str, rowData) => str.split(".").reduce((acc, part) => acc[part] || acc, rowData);
 
 const filterData = (searchString = "", columns = [], rows = []) => {
     const fieldNames = getSearchableFieldNames(columns);

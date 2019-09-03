@@ -1,7 +1,7 @@
 const getDataWithinIndexRange = (from, to, data) =>
     data ? data.filter((row, index) => index >= from && index < to) : [];
 
-const getFieldValueFromRowData = (str, rowData) => str.split(".").reduce((acc, part) => acc[part] || acc, rowData);
+const getFieldValueFromRowData = (str, rowData) => str && str.split(".").reduce((acc, part) => acc[part] || acc, rowData);
 
 const numberSort = (a, b) => a < b ? -1 : a > b ? 1 : 0;
 const stringSort = (a, b) => a.toUpperCase() < b.toUpperCase() ? -1 : 1;
